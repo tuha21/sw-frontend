@@ -1,0 +1,302 @@
+.products-wrapper {
+    .products-filter {
+        display: flex;
+        justify-content: space-between;
+
+        .connections-select-info {
+            display: flex;
+            align-items: center;
+            border: 1px solid #0088FF;
+            padding: 5px 20px;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+
+            svg {
+                margin-right: 7px;
+            }
+
+            .total-seleted {
+                padding-left: 7px;
+                border-left: 1px solid rgb(233, 236, 236);
+            }
+        }
+
+        .products-action {
+            .btn-quick-mapping {
+                height: 36px;
+                margin-right: 10px;
+                border-radius: 4px;
+                border: 1px solid #0088FF;
+                color: #0088FF;
+                background-color: #fff;
+                padding: 0px 16px;
+            }
+
+            .btn-crawl-product {
+                height: 36px;
+                border-radius: 4px;
+                border: 1px solid #0088FF;
+                color: #fff;
+                background-color: #0088FF;
+                padding: 0px 16px;
+            }
+        }
+    }
+
+    .product-quick-filter {
+        margin-top: 10px;
+        background-color: #fff;
+        padding: 10px 16px;
+
+        .filter-tab {
+            height: 30px;
+            display: flex;
+            align-items: center;
+
+            span {
+                cursor: pointer;
+                padding-bottom: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .active {
+                border-bottom: 2px solid #0088FF;
+                color: #0088FF;
+            }
+        }
+
+        .filter-text {
+            margin-top: 15px;
+
+            input {
+                height: 36px;
+                background: #FFFFFF;
+                border: 1px solid #D3D5D7;
+                border-radius: 6px;
+                width: 100%;
+                outline: none;
+                padding-left: 16px;
+
+                &::placeholder {
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+
+    .product-list {
+        .product-header {
+            padding: 12px;
+            display: flex;
+
+            .col-1 {
+                width: 30%;
+                padding-left: 80px;
+            }
+
+            .col-2 {
+                width: 20%;
+            }
+
+            .col-3 {
+                width: 30%;
+            }
+
+            .col-4 {
+                width: 10%;
+            }
+        }
+    }
+
+    .product-body {
+        .product-item {
+            margin-bottom: 10px;
+            .main-product {
+                display: flex;
+                align-items: center;
+                padding: 10px 22px;
+                background-color: #fff;
+
+                .col-1 {
+                    width: 30%;
+
+                    .drill-icon {
+                        cursor: pointer;
+                    }
+
+                    display: flex;
+                    align-items: center;
+
+                    .image-product {
+                        margin-left: 55px;
+                        margin-right: 10px;
+
+                        img {
+                            width: 45px;
+                            height: 45px;
+                            object-fit: cover;
+                            border-radius: 2px;
+                        }
+                    }
+
+                    .product-name {
+                        color: #0088FF;
+                        cursor: pointer;
+                    }
+                }
+
+                .col-2 {
+                    width: 20%;
+                }
+
+                .col-3 {
+                    width: 30%;
+                }
+
+                .col-4 {
+                    width: 10%;
+                }
+            }
+            .product-vatiant-list {
+                border-top: 1px dashed #D3D5D7;
+                .product-variant {
+                    padding-bottom: 10px;
+                    background-color: #fff;
+                    .product-variant-info {
+                        display: flex;
+                        align-items: center;
+                        padding: 10px 22px;
+                        .col-1 {
+                            width: 30%;
+        
+                            .drill-icon {
+                                cursor: pointer;
+                                margin-left: 20px;
+                            }
+        
+                            display: flex;
+                            align-items: center;
+        
+                            .image-product {
+                                margin-left: 55px;
+                                margin-right: 10px;
+        
+                                img {
+                                    width: 45px;
+                                    height: 45px;
+                                    object-fit: cover;
+                                    border-radius: 2px;
+                                }
+                            }
+        
+                            .product-name {
+                                color: #0088FF;
+                                cursor: pointer;
+                            }
+                        }
+        
+                        .col-2 {
+                            width: 20%;
+                        }
+        
+                        .col-3 {
+                            width: 30%;
+                            display: flex;
+                            align-items: center;
+                            .product-name {
+                                color: #0088FF;
+                                cursor: pointer;
+                            }
+                            .image-product {
+                                margin-right: 10px;
+                                img {
+                                    width: 45px;
+                                    height: 45px;
+                                    object-fit: cover;
+                                    border-radius: 2px;
+                                }
+                            }
+                        }
+        
+                        .col-4 {
+                            width: 10%;
+                            svg {
+                                margin-right: 15px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .product-mapping-wrapper {
+                        margin-left: 110px;
+                        margin-right: 25px;
+                        border: 1px solid #D3D5D7;
+                        border-radius: 3px;
+                        .mapping-product {
+                            .mapping-header {
+                                padding-left: 10px;
+                                display: flex;
+                                height: 37px;
+                                align-items: center;
+                                border-bottom: 1px solid #D3D5D7;
+                                .c1 {
+                                    width: 40%;
+                                    font-weight: 500;
+                                }
+                                .c2 {
+                                    width: 20%;
+                                }
+                                .c3 {
+                                    width: 20%;
+                                }
+                                .c4 {
+                                    width: 20%;
+                                }
+                            }
+                            .tiktok-info {
+                                padding: 30px 10px;
+                                display: flex;
+                                height: 37px;
+                                align-items: center;
+                                border-bottom: 1px solid #D3D5D7;
+                                .c1 {
+                                    width: 40%;
+                                    font-weight: 500;
+                                }
+                                .c2 {
+                                    width: 20%;
+                                }
+                                .c3 {
+                                    width: 20%;
+                                }
+                                .c4 {
+                                    width: 20%;
+                                }
+                            }
+                            .sw-info {
+                                padding: 30px 10px;
+                                display: flex;
+                                height: 37px;
+                                align-items: center;
+                                .c1 {
+                                    width: 40%;
+                                    font-weight: 500;
+                                }
+                                .c2 {
+                                    width: 20%;
+                                }
+                                .c3 {
+                                    width: 20%;
+                                }
+                                .c4 {
+                                    width: 20%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
