@@ -16,7 +16,7 @@ function ProductItem() {
                 <div className="col-1">
                     <div className="drill-icon" onClick={() => toggleVariant()}>{drillIcon(dillStatus)}</div>
                     <div className="image-product">
-                        <img src='https://lacdau.com/media/product/250-1737-7e4d485812a320809c4679c0391e5359.jpg' alt="" />
+                        <img src='https://sapo.dktcdn.net/100/396/032/variants/0258d7e6fece92cbcef4b7aaedd85bba-1678359826075.png' alt="" />
                     </div>
                     <div className="info-product">
                         <div className="product-name">Mô hình Son Goku vs Freeza</div>
