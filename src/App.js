@@ -15,15 +15,15 @@ function App() {
           <div className='app-name'>SaleWork</div>
           <div className='siderbar-item active-menu'>
             {orderIcon()}
-            <Link to={'/home/tiktok-product'}>Sản phẩm</Link>
+            <Link to={'/sw-frontend/tiktok-product'}>Sản phẩm</Link>
           </div>
           <div className='siderbar-item'>
             {orderIcon()}
-            <Link to={'/home/tiktok-setting'}>Đơn hàng</Link>
+            <Link to={'/sw-frontend/tiktok-setting'}>Đơn hàng</Link>
           </div>
           <div className='siderbar-item'>
             {settingIcon()}
-            <Link to={'/home/tiktok-setting'}>Cấu hình</Link>
+            <Link to={'/sw-frontend/tiktok-setting'}>Cấu hình</Link>
           </div>
         </div>
         <div className="body">
@@ -32,9 +32,10 @@ function App() {
           </div>
           <div className='content'>
             <Routes>
-              <Route path='/' element={<Product />} />
-              <Route path='/home/tiktok-product' element={<Product />} />
-              <Route path='/home/tiktok-setting' element={<Setting />} />
+              <Route path='/' element={<Setting />} />
+              <Route path='/sw-frontend' element={<Setting />} />
+              <Route path='/sw-frontend/tiktok-product' element={<Product />} />
+              <Route path='/sw-frontend/tiktok-setting' element={<Setting />} />
             </Routes>
           </div>
         </div>
