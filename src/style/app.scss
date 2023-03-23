@@ -65,4 +65,48 @@
 
 .setting {
     background-color: #fff;
+    padding-bottom: 10px;
+    .action {
+        padding: 10px;
+        display: flex;
+    }
+    .connections {
+        background-color: #F2F9FF;
+        margin: 0px 10px;
+        .connection-item-wrapper {
+            margin: 10px 0px;
+            .connection-item {
+                background-color: #fff;
+                border: 1px solid black;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                height: 60px;
+                padding: 10px;
+                box-shadow: 0 1px 2px #00000026, 0 1px 3px 1px #0000001a;
+                border: 1px solid transparent;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                .connection-info {
+                    padding: 0px 10px;
+                    .connection-name {
+                        font-weight: 500;
+                    }
+                    .connection-shop-id {
+                        color: #4d555d;
+                        font-size: 12px;
+                    }
+                }
+                svg {
+                    height: 25px;
+                    color: #0088FF !important;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }

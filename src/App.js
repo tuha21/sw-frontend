@@ -1,12 +1,11 @@
 import {
   BrowserRouter, Route, Routes, Link
 } from 'react-router-dom';
-import DashBoard from './pages/dashboard/DashBoard';
 import Product from './pages/product/Product';
 import Setting from './pages/setting/Setting';
-import ConnectSuccess from './pages/setting/ConnectSuccess';
 import './style/app.scss';
 import { orderIcon, settingIcon } from './svg/svgIcon';
+import React, { useState } from 'react';
 
 function App() {
   return (
@@ -33,11 +32,9 @@ function App() {
           </div>
           <div className='content'>
             <Routes>
-              <Route path='/home/dasboard' element={<DashBoard />} />
-              <Route path='/home/product' element={<Product />} />
+              <Route path='/' element={<Product />} />
               <Route path='/home/tiktok-product' element={<Product />} />
               <Route path='/home/tiktok-setting' element={<Setting />} />
-              <Route path='/home/tiktok-setting/connected' element={<ConnectSuccess />} />
             </Routes>
           </div>
         </div>

@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UIComponentProvider } from '@sapo-presentation/sapo-ui-components';
+import { UIComponentProvider, createSapoTheme } from '@sapo-presentation/sapo-ui-components';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const customTheme = createSapoTheme({ coefficient: 10 / 16 });
 root.render(
-  <UIComponentProvider>
+  <UIComponentProvider theme={customTheme}>
     <App />
   </UIComponentProvider>
 );
