@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { updateChannelProduct, updatePositionApi, updateSetting } from '../actions/action';
 
-const env = 2
+const env = 1
 const PRODUCT_DOMAIN = env === 1 ? 'https://sw-service-production.up.railway.app' : 'http://localhost:8080'
 export const callApi = async (options) => {
   options = {
