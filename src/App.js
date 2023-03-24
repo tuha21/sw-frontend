@@ -5,9 +5,20 @@ import Product from './pages/product/Product';
 import Setting from './pages/setting/Setting';
 import './style/app.scss';
 import { orderIcon, settingIcon } from './svg/svgIcon';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getConnections } from './apis/settingApi';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    fetchConnection()
+  }, []);
+
+  const fetchConnection = () => {
+      dispatch(getConnections());
+  }
+
   return (
     <BrowserRouter>
       <div className="app">

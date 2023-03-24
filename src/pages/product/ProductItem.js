@@ -2,7 +2,7 @@ import { useState } from "react";
 import { drillIcon } from "../../svg/svgIcon";
 import ProductVariant from "./ProductVariant";
 
-function ProductItem() {
+function ProductItem(props) {
 
     const [dillStatus, setDrillStatus] = useState(true);
 
@@ -10,21 +10,23 @@ function ProductItem() {
         setDrillStatus(!dillStatus)
     }
 
+    const { channelProduct } = props;
+    const { product, total_mapping } = channelProduct;
     return (
         <div className="product-item">
             <div className="main-product">
                 <div className="col-1">
                     <div className="drill-icon" onClick={() => toggleVariant()}>{drillIcon(dillStatus)}</div>
                     <div className="image-product">
-                        <img src='https://sapo.dktcdn.net/100/396/032/variants/0258d7e6fece92cbcef4b7aaedd85bba-1678359826075.png' alt="" />
+                        <img src={product.image ? product.image : 'https://louisville.edu/history/images/noimage.jpg/'} alt="" />
                     </div>
                     <div className="info-product">
-                        <div className="product-name">Mô hình Son Goku vs Freeza</div>
+                        <div className="product-name">{product.name}</div>
                         <div className="varian-info">{'3 phiên bản'}</div>
                     </div>
                 </div>
                 <div className="col-2">
-                    <div className="mapping-status">3/3</div>
+                    <div className="mapping-status">{`${total_mapping}/${channelProduct.variants.length}`}</div>
                 </div>
                 <div className="col-3">
                 </div>
@@ -34,9 +36,9 @@ function ProductItem() {
             {
                 dillStatus ? (
                     <div className="product-vatiant-list">
-                        <ProductVariant />
-                        <ProductVariant />
-                        <ProductVariant />
+                        {channelProduct?.variants?.map((v, i) => {
+                            return <ProductVariant variant={v} />
+                        })}
                     </div>
                 ) : null
             }

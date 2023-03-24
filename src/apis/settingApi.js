@@ -1,34 +1,8 @@
 import axios from 'axios';
+import { updateChannelProduct, updatePositionApi, updateSetting } from '../actions/action';
 
-const PRODUCT_DOMAIN = 'https://sw-service-production.up.railway.app';
-const LOCAL_DOMAIN = 'http://localhost:8080';
-
-export const connectShop = () => {
-  var options = {
-    url: '/api/v1/connect/install?tenantId=1',
-    method: "GET",
-  };
-
-  callApi(options).then((res) => {
-    if (res?.data?.data?.url) {
-      window.parent.location.href = res.data.data.url;
-    }
-  });
-};
-
-export const getConnections = () => {
-  var options = {
-    url: '/api/v1/connect/all?tenantId=1',
-    method: "GET",
-  };
-
-  return callApi(options).then((res) => {
-    if (res?.data?.data) {
-      return res.data.data
-    }
-  });
-};
-
+const env = 2
+const PRODUCT_DOMAIN = env === 1 ? 'https://sw-service-production.up.railway.app' : 'http://localhost:8080'
 export const callApi = async (options) => {
   options = {
     ...options,
@@ -43,4 +17,51 @@ export const callApi = async (options) => {
     }
     return error;
   }
+};
+
+
+export const connectShop = () => (dispatch, getState) => {
+  const { setting: { tenantId } } = getState();
+  var options = {
+    url: `/api/v1/connect/install?tenantId=${tenantId}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.data?.url) {
+      window.parent.location.href = res.data.data.url;
+    }
+  });
+};
+
+export const getConnections = () => (dispatch, getState) => {
+  dispatch(updatePositionApi('getConnections', true))
+  var options = {
+    url: '/api/v1/connect/all?tenantId=1',
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.data) {
+      dispatch(updateSetting('connections', res.data.data));
+      dispatch(updatePositionApi('getConnections', false))
+    }
+  });
+};
+
+export const getChannelProducts = () => (dispatch, getState) => {
+  dispatch(updatePositionApi('getChannelProducts', true))
+  const { setting: { connections } } = getState();
+  var connectionIds = connections.map(c => c.id);
+  var options = {
+    url: `/api/v1/channel-product/filter?connectionIds=${connectionIds}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.data) {
+      dispatch(updateChannelProduct('channelProducts', res.data.data));
+      dispatch(updatePositionApi('getChannelProducts', false))
+    }
+  });
 };

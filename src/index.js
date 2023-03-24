@@ -4,13 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UIComponentProvider, createSapoTheme } from '@sapo-presentation/sapo-ui-components';
+import { Provider } from 'react-redux';
+import reduxStore from './reduxStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const store = reduxStore()
 
 const customTheme = createSapoTheme({ coefficient: 10 / 16 });
 root.render(
   <UIComponentProvider theme={customTheme}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </UIComponentProvider>
 );
 

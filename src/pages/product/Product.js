@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getChannelProducts } from "../../apis/settingApi";
 import "../../style/product.scss"
 import { tiktokIcon } from "../../svg/svgIcon";
 import ProductItem from "./ProductItem";
 
 function Product () {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getChannelProducts());
+    }, [])
+
+    const channelProducts = useSelector(state => state?.channelProduct?.channelProducts || [])
 
     return (
         <div className="products-wrapper">
@@ -37,14 +47,9 @@ function Product () {
                     <div className="col-4">Thao tác</div>
                 </div>
                 <div className="product-body">
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
+                    {channelProducts.map((v, i) => {
+                        return <ProductItem channelProduct={v} />
+                    })}
                 </div>
             </div>
         </div>
