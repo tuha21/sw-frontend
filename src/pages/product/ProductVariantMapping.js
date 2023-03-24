@@ -21,7 +21,11 @@ function ProductVariantMapping() {
                 <div className="c4">300</div>
             </div>
             <div className="sw-info">
-                <div className="c1">Bem Store</div>
+                <div className="c1">
+                    {tiktokIcon()}
+                    &ensp;
+                    Bem Store
+                </div>
                 <div className="c2">GKFZ</div>
                 <div className="c3">1,500,000</div>
                 <div className="c4">300</div>

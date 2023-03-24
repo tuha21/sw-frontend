@@ -49,12 +49,13 @@ export const getConnections = () => (dispatch, getState) => {
   });
 };
 
-export const getChannelProducts = () => (dispatch, getState) => {
+export const getChannelProducts = (page, mappingStatus, query) => (dispatch, getState) => {
   dispatch(updatePositionApi('getChannelProducts', true))
+  dispatch(updateChannelProduct('channelProducts', []));
   const { setting: { connections } } = getState();
   var connectionIds = connections.map(c => c.id);
   var options = {
-    url: `/api/v1/channel-product/filter?connectionIds=${connectionIds}`,
+    url: `/api/v1/channel-product/filter?connectionIds=${connectionIds}&mappingStatus=${mappingStatus}&query=${query}&page=${page}`,
     method: "GET",
   };
 

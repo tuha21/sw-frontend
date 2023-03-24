@@ -31,7 +31,7 @@ function Setting () {
                             <div className="connection-name">{c.name}</div>
                             <div className="connection-shop-id">{c.shop_id}</div>
                         </div>
-                        <RefreshIcon />
+                        {/* <RefreshIcon /> */}
                     </div>
                 </div>
             )

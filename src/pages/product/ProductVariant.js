@@ -1,3 +1,4 @@
+import { RefreshIcon } from "@sapo-presentation/sapo-ui-components";
 import { useState } from "react";
 import { createIcon, drillIcon, mappingIcon } from "../../svg/svgIcon";
 import ProductVariantMapping from "./ProductVariantMapping";
@@ -21,6 +22,7 @@ function ProductVariant(props) {
                     </div>
                     <div className="info-product">
                         <div className="product-name">{variant.name}</div>
+                        <div className="sku">SKU: {variant.sku}</div>
                     </div>
                 </div>
                 <div className="col-2">
@@ -31,12 +33,14 @@ function ProductVariant(props) {
                         <img src='https://lacdau.com/media/product/250-1737-7e4d485812a320809c4679c0391e5359.jpg' alt="" />
                     </div>
                     <div className="info-product">
-                        <div className="product-name">{variant.name}</div>
+                        <div className="product-name">Mo hinh Son Goku Genkidama - 2023</div>
+                        <div className="sku">SKU: {variant.sku}</div>
                     </div>
                 </div>
                 <div className="col-4">
                     {mappingIcon()}
                     {createIcon()}
+                    <RefreshIcon />
                 </div>
             </div>
             {

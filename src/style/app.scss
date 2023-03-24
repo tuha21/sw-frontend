@@ -1,8 +1,9 @@
 .app {
     display: flex;
     overflow: hidden;
+    font-size: 14px;
     .siderbar {
-        width: 200px;
+        width: 240px;
         height: 100vh;
         background-color: #182537;
         .app-name {
@@ -41,16 +42,23 @@
     }
     .body {
         .topbar {
-            width: calc(100vi - 200px);
-            height: 50px;
+            width: calc(100vi - 240px);
+            height: 60px;
             background-color: #fff;
             padding-top: 10px;
             padding-bottom: 10px;
             align-items: center;
             display: flex;
-            span {
-                margin-left: 24px;
-                font-weight: 500;
+            padding-left: 24px;
+            .parent-title {
+                font-size: 20px;
+                color: #747c87;
+            }
+            svg {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .current-title {
                 font-size: 20px;
             }
         }

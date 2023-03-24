@@ -4,7 +4,7 @@ import ProductVariant from "./ProductVariant";
 
 function ProductItem(props) {
 
-    const [dillStatus, setDrillStatus] = useState(true);
+    const [dillStatus, setDrillStatus] = useState(false);
 
     const toggleVariant = () => {
         setDrillStatus(!dillStatus)
@@ -22,15 +22,17 @@ function ProductItem(props) {
                     </div>
                     <div className="info-product">
                         <div className="product-name">{product.name}</div>
-                        <div className="varian-info">{'3 phiên bản'}</div>
+                        <div className="variant-info">{'3 phiên bản'}</div>
                     </div>
                 </div>
                 <div className="col-2">
                     <div className="mapping-status">{`${total_mapping}/${channelProduct.variants.length}`}</div>
                 </div>
                 <div className="col-3">
+                    
                 </div>
                 <div className="col-4">
+                    
                 </div>
             </div>
             {
