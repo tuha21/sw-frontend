@@ -81,6 +81,15 @@ export const mappingIcon = (mappingStatus) => {
     )
 }
 
+export const bigUnMappingIcon = () => {
+    return (
+        <svg width="50" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.7071 18.2929L1.70711 0.292908L0.292892 1.70712L3.74467 5.1589C1.59084 5.7158 0 7.67212 0 10C0 12.7614 2.23858 15 5 15H8V13H5C3.34315 13 2 11.6569 2 10C2 8.34315 3.34315 7 5 7H5.58577L7.58577 9H5V11H9.58577L18.2929 19.7071L19.7071 18.2929Z" fill="#A3A8AF" />
+                <path d="M16.7077 12.4669L18.1356 13.8948C19.2726 12.9783 20 11.5741 20 10C20 7.23858 17.7614 5 15 5H12V7H15C16.6569 7 18 8.34315 18 10C18 11.0224 17.4886 11.9253 16.7077 12.4669Z" fill="#A3A8AF" />
+            </svg>
+    )
+}
+
 export const createIcon = () => {
     return (
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

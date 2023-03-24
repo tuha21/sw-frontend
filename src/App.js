@@ -28,6 +28,9 @@ function App() {
       case '/sw-frontend/tiktok-setting':
         setPathTitle('Cấu hình');
         break;
+      case '/sw-frontend/':
+        setPathTitle('Cấu hình');
+        break;
       default: setPathTitle('')
     }
   }, [location.pathname])
