@@ -31,6 +31,12 @@ function App() {
       case '/sw-frontend/':
         setPathTitle('Cấu hình');
         break;
+      case '/sw-frontend/product':
+        setPathTitle('Sản phẩm');
+        break;
+      case '/sw-frontend/order':
+        setPathTitle('Đơn hàng');
+        break;
       default: setPathTitle('')
     }
   }, [location.pathname])
@@ -51,6 +57,14 @@ function App() {
     <div className="app">
       <div className="siderbar">
         <div className='app-name'>SaleWork</div>
+        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/product') ? 'active-menu' : ''}`}>
+          {settingIcon()}
+          <Link to={'/sw-frontend/product'}>Sản phẩm</Link>
+        </div>
+        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/order') ? 'active-menu' : ''}`}>
+          {settingIcon()}
+          <Link to={'/sw-frontend/order'}>Đơn hàng</Link>
+        </div>
         <div className={`siderbar-item ${isCurrentPath('/sw-frontend/tiktok-product') ? 'active-menu' : ''}`}>
           {orderIcon()}
           <Link to={'/sw-frontend/tiktok-product'}>Sản phẩm TikTokShop</Link>
@@ -76,6 +90,8 @@ function App() {
             <Route path='/sw-frontend' element={<Setting />} />
             <Route path='/sw-frontend/tiktok-product' element={<Product />} />
             <Route path='/sw-frontend/tiktok-setting' element={<Setting />} />
+            <Route path='/sw-frontend/product' element={<Setting />} />
+            <Route path='/sw-frontend/order' element={<Setting />} />
           </Routes>
         </div>
       </div>
