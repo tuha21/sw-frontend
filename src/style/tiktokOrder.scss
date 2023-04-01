@@ -1,0 +1,95 @@
+.tiktok-order-wrapper {
+    margin-bottom: 20px;
+    .tiktok-order-filter {
+        .tiktok-order-filter-connection {
+            display: flex;
+            justify-content: space-between;
+        }
+        .tiktok-order-filter-status {
+            display: flex;
+            background-color: #fff;
+            margin-top: 10px;
+            padding: 10px;
+            .tiktok-order-filter-status-tab {
+                padding: 0px 10px 5px 10px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+            .active {
+                border-bottom: 2px solid #0088FF;
+                color: #0088FF;
+            }
+        }
+        .tiktok-order-filter-search {
+            background-color: #fff;
+            padding: 0px 10px 10px 10px;
+        }
+    }
+    .tiktok-order-list {
+        .tiktok-order-list-header {
+            padding: 10px 0px;
+            font-weight: 500;
+            .tiktok-order-number {
+                padding-left: 54px;
+            }
+        }
+        .tiktok-order-list-body {
+            .tiktok-order-item-info {
+                height: 64px;
+            }
+            background-color: #fff;
+            align-items: center;
+            .tiktok-order-number {
+                padding-left: 20px;
+                color: #0088FF;
+                cursor: pointer;
+            }
+        }
+        .tiktok-order-item {
+            margin-bottom: 10px;
+            padding-bottom: 1px;
+            .tiktok-order-item-info {
+                display: flex;
+                align-items: center;
+                .tiktok-order-number {
+                    width: calc((100% / 6) + 40px);
+                    display: flex;
+                    align-items: center;
+                    div {
+                        margin-left: 10px;
+                    }
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        color: #A3A8AF;
+                        cursor: pointer;
+                        margin-right: 10px;
+                    }
+                }
+                .tiktok-order-issued-at {
+                    width: calc((100% / 6 - 20px));
+                }
+                .tiktok-order-status {
+                    width: calc(100% / 6);
+                }
+                .tiktok-order-shipping-carrier {
+                    width: calc(100% / 6);
+                }
+                .tiktok-order-tracking-code {
+                    width: calc(100% / 6);
+                }
+                .tiktok-order-action {
+                    width: calc((100% / 6) - 20px);
+                    display: flex;
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        color: #A3A8AF;
+                        cursor: pointer;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

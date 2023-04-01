@@ -1,5 +1,5 @@
 import {
-  BrowserRouter, Route, Routes, Link, useLocation
+  Route, Routes, Link, useLocation
 } from 'react-router-dom';
 import Product from './pages/product/Product';
 import Setting from './pages/setting/Setting';
@@ -8,6 +8,7 @@ import { breakCrumbIcon, orderIcon, settingIcon } from './svg/svgIcon';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getConnections } from './apis/settingApi';
+import TikTokOrder from './pages/tiktokOrder/TiktokOrder';
 
 function App() {
   const location = useLocation();
@@ -90,8 +91,9 @@ function App() {
             <Route path='/sw-frontend' element={<Setting />} />
             <Route path='/sw-frontend/tiktok-product' element={<Product />} />
             <Route path='/sw-frontend/tiktok-setting' element={<Setting />} />
-            <Route path='/sw-frontend/product' element={<Setting />} />
-            <Route path='/sw-frontend/order' element={<Setting />} />
+            <Route path='/sw-frontend/product' element={<Product />} />
+            <Route path='/sw-frontend/order' element={<TikTokOrder />} />
+            <Route path='/sw-frontend/tiktok-order' element={<TikTokOrder />} />
           </Routes>
         </div>
       </div>

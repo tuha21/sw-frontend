@@ -1,0 +1,63 @@
+.tiktok-order-detail-wrapper {
+    margin: 0px 10px 10px 10px;
+    .tiktok-order-detail-tab-labels {
+        display: flex;
+        height: 37px;
+        align-items: center;
+        .tiktok-order-detail-tab-label {
+            padding: 0px 15px;
+            cursor: pointer;
+            height: 37px;
+            display: flex;
+            align-items: center;
+        }
+        .active {
+            border-top: 2px solid #0088FF;
+            background-color: #f5f9fd;
+        }
+    }
+    .tiktok-order-item-tab {
+        padding: 0 15px;
+        background-color: #f5f9fd;
+        .tiktok-order-item-header {
+            color: #747C87;
+            font-weight: 500;
+            border-bottom: 1px solid #e5f1fd;
+            height: 37px;
+            align-items: center;
+        }
+        .tiktok-order-item-body {
+            color: #747C87;
+            font-weight: 500;
+            border-bottom: 1px solid #e5f1fd;
+            height: 90px;
+            align-items: center;
+        }
+        .tiktok-order-item-footer {
+            color: #747C87;
+            font-weight: 500;
+            height: 37px;
+            align-items: center;
+            justify-content: end;
+        }
+        .tiktok-order-item-item {
+            display: flex;
+            .tiktok-order-item-product {
+                display: flex;
+                width: 60%;
+                img {
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 4px;
+                    margin-right: 10px;
+                }
+            }
+            .tiktok-order-item-quantity {
+                width: 20%;
+            }
+            .tiktok-order-item-price {
+                width: 20%;
+            }
+        }
+    }
+}
