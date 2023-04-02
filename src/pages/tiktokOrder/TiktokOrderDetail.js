@@ -6,7 +6,8 @@ const tabs = [
     {id: 1, label: 'Sản phẩm trong đơn'},
     {id: 2, label: 'Lịch sử giao hàng'}
 ]
-function TikTokOrderDetail () {
+function TikTokOrderDetail (props) {
+    const { tiktokOrder } = props;
 
     const [tab, setTab] = useState(1);
 
@@ -27,7 +28,7 @@ function TikTokOrderDetail () {
         switch(tab) {
             case 1: 
                 return (
-                    <TikTokOrderItemTab />
+                    <TikTokOrderItemTab tiktokOrder={tiktokOrder}/>
                 )
             default: return null;
         }

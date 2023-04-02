@@ -18,7 +18,6 @@ function App() {
   const [pathTitle, setPathTitle] = useState('');
 
   useEffect(() => {
-    debugger
     switch (location.pathname) {
       case '/sw-frontend/tiktok-product':
         setPathTitle('Sản phẩm TikTokShop');

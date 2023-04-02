@@ -13,3 +13,8 @@ export const updateChannelProduct = (field, value) => ({
     type: 'update_channel_product',
     field, value
 })
+
+export const updateTikTokOrder = (field, value) => ({
+    type: 'update_tiktok_order',
+    field, value
+})

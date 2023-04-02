@@ -4,6 +4,10 @@
         .tiktok-order-filter-connection {
             display: flex;
             justify-content: space-between;
+            .select-connection {
+                width: 200px;
+                background-color: #fff;
+            }
         }
         .tiktok-order-filter-status {
             display: flex;
@@ -30,7 +34,7 @@
             padding: 10px 0px;
             font-weight: 500;
             .tiktok-order-number {
-                padding-left: 54px;
+                padding-left: 65px;
             }
         }
         .tiktok-order-list-body {
@@ -42,7 +46,9 @@
             .tiktok-order-number {
                 padding-left: 20px;
                 color: #0088FF;
-                cursor: pointer;
+            }
+            .tiktok-order-tracking-code {
+                color: #0088FF;
             }
         }
         .tiktok-order-item {
@@ -52,7 +58,7 @@
                 display: flex;
                 align-items: center;
                 .tiktok-order-number {
-                    width: calc((100% / 6) + 40px);
+                    width: calc((100% / 6) + 80px);
                     display: flex;
                     align-items: center;
                     div {
@@ -67,7 +73,7 @@
                     }
                 }
                 .tiktok-order-issued-at {
-                    width: calc((100% / 6 - 20px));
+                    width: calc((100% / 6 - 40px));
                 }
                 .tiktok-order-status {
                     width: calc(100% / 6);
@@ -79,7 +85,7 @@
                     width: calc(100% / 6);
                 }
                 .tiktok-order-action {
-                    width: calc((100% / 6) - 20px);
+                    width: calc((100% / 6) - 40px);
                     display: flex;
                     svg {
                         width: 24px;

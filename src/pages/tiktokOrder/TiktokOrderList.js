@@ -1,21 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TikTokOrderItem from "./TiktokOrderItem";
+import SelectConnection from "../../components/SelectConnection";
+import { useDispatch, useSelector } from "react-redux";
+import { getTikTokOrders } from "../../apis/settingApi";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
 
 const listStatusFilter = [
-    {status: 'all', label: "Tất cả đơn hàng"},
-    {status: 'unpaid', label: "Chưa xử lý"},
-    {status: 'process', label: "Đã xử lý"},
-    {status: 'shiping', label: "Gao thành công"},
-    {status: 'canncelled', label: "Đơn hủy"}
+    {status: 1, label: "Tất cả đơn hàng"},
+    {status: 2, label: "Chưa xử lý"},
+    {status: 3, label: "Đã xử lý"},
+    {status: 4, label: "Gao thành công"},
+    {status: 5, label: "Đơn hủy"}
 ]
 function TikTokOrderList (props) {
+    const connections = useSelector(state => state?.setting?.connections) || [];
+    const tiktokOrders = useSelector(state => state?.tiktokOrders?.orderList) || [];
+    const totalOrder = useSelector(state => state?.tiktokOrders?.totalOrder);
+    console.log(tiktokOrders);
 
-    const [filterStatus, setFilterStatus] = useState('all');
+    const [filterStatus, setFilterStatus] = useState(1);
+    const [page, setPage] = useState({ id: 1,limit: 20 });
+    const [query, setQuery] = useState('');
+    const [selectedConnections, setSelectConnections] = useState(connections?.map(c => c.id) || []);
+    const dispatch = useDispatch();
 
-    const handleChangePage = (page, limit) => {
-        
+    useEffect(() => {
+        dispatch(getTikTokOrders(page.id, page.limit, selectedConnections, filterStatus, query));
+    }, [page, filterStatus, query, selectedConnections]);
+
+    const handleChangePage = (id, limit) => {
+        setPage({id, limit});
+    }
+
+    const handleChangeSelectedConnection = (connectionIds) => {
+        setSelectConnections(connectionIds);
+    }
+
+    const onQuery = (query) => {
+       setQuery(query);
     }
 
     const renderFilterStatus = () => {
@@ -33,9 +56,8 @@ function TikTokOrderList (props) {
         <React.Fragment>
             <div className="tiktok-order-filter">
                 <div className="tiktok-order-filter-connection">
-                    <Button
-                        children={"Chọn gian hàng"}
-                        variant="outlined"
+                    <SelectConnection 
+                        handleChangeSelectedConnection={handleChangeSelectedConnection}
                     />
                     <Button
                         children={"Cập nhật dữ liệu đơn hàng"}
@@ -45,7 +67,10 @@ function TikTokOrderList (props) {
                     {renderFilterStatus()}
                 </div>
                 <div className="tiktok-order-filter-search">
-                    <SearchBox placeholder="Tìm kiếm theo mã đơn hàng"/>
+                    <SearchBox 
+                        placeholder="Tìm kiếm theo mã đơn hàng"
+                        onChange={onQuery}
+                    />
                 </div>
             </div>
             <div className="tiktok-order-list">
@@ -59,16 +84,16 @@ function TikTokOrderList (props) {
                         <div className="tiktok-order-action">Thao tác</div>
                     </div>
                 </div>
-                <TikTokOrderItem />
-                <TikTokOrderItem />
-                <TikTokOrderItem />
-                <TikTokOrderItem />
-                <TikTokOrderItem />
+                {
+                    tiktokOrders.map(item => {
+                        return <TikTokOrderItem tiktokOrder={item} />
+                    })
+                }
                 <div className="tiktok-order-paginate">
                     <Pagination 
-                        total={100}
-                        limit={20}
-                        currentPage={1}
+                        total={totalOrder}
+                        limit={page.limit}
+                        currentPage={page.id}
                         onChange={handleChangePage}
                     />
                 </div>
