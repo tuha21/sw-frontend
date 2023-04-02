@@ -17,7 +17,6 @@ function TikTokOrderList (props) {
     const connections = useSelector(state => state?.setting?.connections) || [];
     const tiktokOrders = useSelector(state => state?.tiktokOrders?.orderList) || [];
     const totalOrder = useSelector(state => state?.tiktokOrders?.totalOrder);
-    console.log(tiktokOrders);
 
     const [filterStatus, setFilterStatus] = useState(1);
     const [page, setPage] = useState({ id: 1,limit: 20 });

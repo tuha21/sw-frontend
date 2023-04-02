@@ -49,13 +49,12 @@ export const getConnections = () => (dispatch, getState) => {
   });
 };
 
-export const getChannelProducts = (page, mappingStatus, query) => (dispatch, getState) => {
+export const getChannelProducts = (selectedConnections, query, mappingStatus, page, limit) => (dispatch, getState) => {
   dispatch(updatePositionApi('getChannelProducts', true))
   dispatch(updateChannelProduct('channelProducts', []));
-  const { setting: { connections } } = getState();
-  var connectionIds = connections.map(c => c.id);
+  var search = `connectionIds=${selectedConnections}&mappingStatus=${mappingStatus}&query=${query}&page=${page - 1}&limit=${limit}`;
   var options = {
-    url: `/api/v1/channel-product/filter?connectionIds=${connectionIds}&mappingStatus=${mappingStatus}&query=${query}&page=${page}`,
+    url: `/api/v1/channel-product/filter?${search}`,
     method: "GET",
   };
 
@@ -86,5 +85,40 @@ export const getTikTokOrders = (
       dispatch(updateTikTokOrder('totalOrder', res.data.total))
     }
     dispatch(updatePositionApi('getTikTokOrder', false))
+  });
+}
+
+export const crawlTiktokProduct = (
+  connectionIds,
+  fromDate, toDate
+) => (dispatch, getState) => {
+  dispatch(updatePositionApi('crawlProduct', true))
+  var options = {
+    url: `/api/v1/channel-product/crawl?connectionIds=${connectionIds}&fromDate=${fromDate}&toDate=${toDate}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    dispatch(updatePositionApi('crawlProduct', false))
+  });
+}
+
+
+export const quickMap = (
+  id
+) => (dispatch, getState) => {
+  dispatch(updatePositionApi('quickMap', true))
+  var options = {
+    url: `/api/v1/channel-product/quick-map?id=${id}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.error) {
+      alert(res.data.error)
+    } else {
+      alert('Liên kết thàng công')
+    }
+    dispatch(updatePositionApi('quickMap', false))
   });
 }

@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getConnections } from './apis/settingApi';
 import TikTokOrder from './pages/tiktokOrder/TiktokOrder';
+import Processing from './pages/modal/Processing';
 
 function App() {
   const location = useLocation();
@@ -94,6 +95,7 @@ function App() {
             <Route path='/sw-frontend/order' element={<TikTokOrder />} />
             <Route path='/sw-frontend/tiktok-order' element={<TikTokOrder />} />
           </Routes>
+          <Processing />
         </div>
       </div>
     </div>

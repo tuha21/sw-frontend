@@ -1,32 +1,30 @@
-import { LoadingCircularProgress } from "@sapo-presentation/sapo-ui-components";
+import { LoadingCircularProgress, Pagination } from "@sapo-presentation/sapo-ui-components";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getChannelProducts } from "../../apis/settingApi";
+import { crawlTiktokProduct, getChannelProducts } from "../../apis/settingApi";
 import "../../style/product.scss"
-import { tiktokIcon } from "../../svg/svgIcon";
 import ProductItem from "./ProductItem";
+import SelectConnection from "../../components/SelectConnection";
+import CrawlModal from "../modal/CrawlModal";
 
 function Product() {
 
+    const connections = useSelector(state => state?.setting?.connections) || [];
+
+    const [selectedConnections, setSelectConnections] = useState(connections?.map(c => c.id) || []);
     const [mappingStatus, setMappingStatus] = useState(1); // 1-all, 2-mapping, 3-not mapping
     const [query, setQuery] = useState('');
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState({id: 1, limit: 20});
+    const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getChannelProducts(page, mappingStatus, query));
-    }, [mappingStatus])
+        dispatch(getChannelProducts(selectedConnections, query, mappingStatus, page.id, page.limit));
+    }, [mappingStatus, page, selectedConnections, query])
 
-    const connections = useSelector(state => state?.setting?.connections);
     const channelProducts = useSelector(state => state?.channelProduct?.channelProducts || []);
     const positionApi = useSelector(state => state?.env?.positionApi);
-
-    useEffect(() => {
-        if (query.length >= 3 || query.length === 0) {
-            dispatch(getChannelProducts(page, mappingStatus, query));
-        }
-    }, [query])
 
     const onSearch = (e) => {
         setQuery(e.target.value);
@@ -34,6 +32,14 @@ function Product() {
 
     const channgeTab = (tab) => {
         setMappingStatus(tab);
+    }
+    
+    const handleChangePage = (id, limit) => {
+        setPage({id, limit});
+    }
+
+    const handleChangeSelectedConnection = (connectionIds) => {
+        setSelectConnections(connectionIds);
     }
 
     const renderChannelProduct = () => {
@@ -50,19 +56,25 @@ function Product() {
         )
     }
 
+    const onSubmitCrawl = (connectionIds, fromDate, toDate) => {
+        dispatch(crawlTiktokProduct(connectionIds, fromDate, toDate));
+    }
+
     const isFetchProduct = positionApi.includes('getChannelProducts')
     return (
         <div className="products-wrapper">
+            {showModal ? <CrawlModal closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
             <div className="products-filter">
                 <div className="connections-filter">
-                    <div className="connections-select-info">
-                        <div>{tiktokIcon()}</div>
-                        <div className="total-seleted">{connections.length} gian hang</div>
-                    </div>
+                    <SelectConnection
+                        handleChangeSelectedConnection={handleChangeSelectedConnection}
+                    />
                 </div>
                 <div className="products-action">
                     <button className="btn-quick-mapping">Liên kết nhanh</button>
-                    <button className="btn-crawl-product">Cập nhật dữ liệu sản phẩm</button>
+                    <button className="btn-crawl-product"
+                        onClick={() => setShowModal(true)}
+                    >Cập nhật dữ liệu sản phẩm</button>
                 </div>
             </div>
             <div className="product-quick-filter">
@@ -101,6 +113,12 @@ function Product() {
                                 </div>
                             </div>
                         )}
+                        <Pagination
+                                    total={100}
+                                    limit={page.limit}
+                                    currentPage={page.id}
+                                    onChange={handleChangePage}
+                                />
                     </>
                 )
             }
