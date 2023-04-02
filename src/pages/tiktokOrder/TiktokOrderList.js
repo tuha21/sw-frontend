@@ -11,7 +11,7 @@ const listStatusFilter = [
     {status: 2, label: "Chưa xử lý"},
     {status: 3, label: "Đã xử lý"},
     {status: 4, label: "Gao thành công"},
-    {status: 5, label: "Đơn hủy"}
+    {status: 140, label: "Đơn hủy"}
 ]
 function TikTokOrderList (props) {
     const connections = useSelector(state => state?.setting?.connections) || [];
