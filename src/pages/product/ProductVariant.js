@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createIcon, drillIcon, mappingIcon } from "../../svg/svgIcon";
 import ProductVariantMapping from "./ProductVariantMapping";
 import { useDispatch } from "react-redux";
-import { quickMap } from "../../apis/settingApi";
+import { quickCreate, quickMap } from "../../apis/settingApi";
 
 function ProductVariant(props) {
     const { variant } = props;
@@ -21,6 +21,10 @@ function ProductVariant(props) {
         dispatch(quickMap(id));
     }
 
+    const quickCreateVariant = () => {
+        const { id } = variant;
+        dispatch(quickCreate(id));
+    }
 
     const mappingVariant = variant.variant;
     return (
@@ -54,8 +58,8 @@ function ProductVariant(props) {
                 </div>
                 <div className="col-4">
                     <div onClick={() => quickMapVariant()}>{mappingIcon()}</div>
-                    {createIcon()}
-                    <RefreshIcon />
+                    <div onClick={() => quickCreateVariant()}>{createIcon()}</div>
+                    <div><RefreshIcon /></div>
                 </div>
             </div>
             {

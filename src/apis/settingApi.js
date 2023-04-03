@@ -122,3 +122,22 @@ export const quickMap = (
     dispatch(updatePositionApi('quickMap', false))
   });
 }
+
+export const quickCreate = (
+  id
+) => (dispatch, getState) => {
+  dispatch(updatePositionApi('quickCreate', true))
+  var options = {
+    url: `/api/v1/channel-product/create?id=${id}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.error) {
+      alert(res.data.error)
+    } else {
+      alert('Khởi tạo thành công')
+    }
+    dispatch(updatePositionApi('quickCreate', false))
+  });
+}

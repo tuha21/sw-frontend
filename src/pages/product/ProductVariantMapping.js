@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { bigUnMappingIcon, mappingIcon, tiktokIcon } from "../../svg/svgIcon";
+import { bigUnMappingIcon, tiktokIcon } from "../../svg/svgIcon";
 
 function ProductVariantMapping(props) {
     const { variant } = props;
@@ -24,9 +24,9 @@ function ProductVariantMapping(props) {
                     <div className="c1">
                         SaleWork
                     </div>
-                    <div className="c2">{variant.sku}</div>
-                    <div className="c3">1,500,000</div>
-                    <div className="c4">300</div>
+                    <div className="c2">{mappingVariant.sku}</div>
+                    <div className="c3">{mappingVariant.price}</div>
+                    <div className="c4">{mappingVariant.quantity}</div>
                 </div>
                 <div className="sw-info">
                     <div className="c1">
@@ -34,9 +34,9 @@ function ProductVariantMapping(props) {
                         &ensp;
                         {getConnectionName(variant.connection_id)}
                     </div>
-                    <div className="c2">{mappingVariant.sku}</div>
-                    <div className="c3">1,500,000</div>
-                    <div className="c4">{mappingVariant.quantity}</div>
+                    <div className="c2">{variant.sku}</div>
+                    <div className="c3">{variant.price}</div>
+                    <div className="c4">{variant.quantity}</div>
                 </div>
             </div>
         )

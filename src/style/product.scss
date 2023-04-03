@@ -256,6 +256,8 @@
                         .col-4 {
                             width: 15%;
                             text-align: center;
+                            display: flex;
+                            align-items: center;
                             svg {
                                 margin-right: 15px;
                                 cursor: pointer;
