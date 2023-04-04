@@ -25,7 +25,7 @@ function ProductVariantMapping(props) {
                         SaleWork
                     </div>
                     <div className="c2">{mappingVariant.sku}</div>
-                    <div className="c3">{mappingVariant.retailPrice}</div>
+                    <div className="c3">{mappingVariant.retail_price}</div>
                     <div className="c4">{mappingVariant.available}</div>
                 </div>
                 <div className="sw-info">
