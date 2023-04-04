@@ -30,7 +30,7 @@ function TikTokOrderItem(props) {
 
     const dispatch = useDispatch();
     const printOrderTiktok = () => {
-        dispatch(printOrder(tiktokOrder.id));
+        dispatch(printOrder(tiktokOrder.tiktok_order.id));
     }
     
     return (
@@ -41,7 +41,7 @@ function TikTokOrderItem(props) {
                         {showDetail ? <ArrowChevronBigUpIcon /> : <ArrowChevronBigDownIcon />}
                     </div>
                     {tiktokOrder.tiktok_order.order_number}   
-                    <Chip variant="success" label="Đã in" />
+                    {tiktokOrder.tiktok_order.has_print ? <Chip variant="success" label="Đã in" /> : null}
                 </div>
                 <div className="tiktok-order-issued-at">
                     {getTimeText(tiktokOrder.tiktok_order.issued_at)}
