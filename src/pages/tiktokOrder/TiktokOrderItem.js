@@ -1,5 +1,7 @@
 import { useState } from "react";
 import TikTokOrderDetail from "./TiktokOrderDetail";
+import { useDispatch } from "react-redux";
+import { printOrder } from "../../apis/settingApi";
 
 const { ArrowChevronBigDownIcon, Chip, CircleCheckOutlineIcon, ExtraPrintIcon, ArrowChevronBigUpIcon } = require("@sapo-presentation/sapo-ui-components");
 
@@ -21,10 +23,16 @@ const getStatusLabel = (status) => {
         default: return status;
     }
 }
+
 function TikTokOrderItem(props) {
     const { tiktokOrder } = props;
     const [showDetail, setShowDetail] = useState(true);
 
+    const dispatch = useDispatch();
+    const printOrderTiktok = () => {
+        dispatch(printOrder(tiktokOrder.id));
+    }
+    
     return (
         <div key={tiktokOrder.tiktok_order.id} className="tiktok-order-item tiktok-order-list-body">
             <div className="tiktok-order-item-info">
@@ -49,7 +57,7 @@ function TikTokOrderItem(props) {
                 </div>
                 <div className="tiktok-order-action">
                     <CircleCheckOutlineIcon />
-                    <ExtraPrintIcon />
+                    <ExtraPrintIcon onClick={() => printOrderTiktok()} />
                 </div>
             </div>
             {showDetail ? <TikTokOrderDetail tiktokOrder={tiktokOrder}/> : null}

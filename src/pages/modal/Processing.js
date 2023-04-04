@@ -6,7 +6,11 @@ function Processing (props) {
 
     const positionApis = useSelector(state => state.env.positionApi) || []
 
-    const listProcessing = positionApis.filter(item => item === 'crawlProduct' || item === 'quickMap' || item === "quickCreate");
+    const listProcessing = positionApis.filter(item => item === 'crawlProduct' 
+        || item === 'quickMap' 
+        || item === 'quickCreate'
+        || item === 'printOrder'
+    );
 
     const renderItem = (item) => {
         var label = "";
@@ -18,6 +22,9 @@ function Processing (props) {
         }
         if (item === 'quickCreate') {
             label = 'Khởi tạo sản phẩm';
+        }
+        if (item === 'printOrder') {
+            label = 'In đơn hàng';
         }
         return (
             <div className="processing-item">

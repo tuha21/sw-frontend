@@ -141,3 +141,22 @@ export const quickCreate = (
     dispatch(updatePositionApi('quickCreate', false))
   });
 }
+
+export const printOrder = (
+  id
+) => (dispatch, getState) => {
+  dispatch(updatePositionApi('printOrder', true))
+  var options = {
+    url: `/api/v1/tiktok-orders/print?orderId=${id}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.error) {
+      alert(res.data.error)
+    } else {
+      window.open(res.data.data);
+    }
+    dispatch(updatePositionApi('printOrder', false))
+  });
+}
