@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { updateChannelProduct, updatePositionApi, updateSetting, updateTikTokOrder } from '../actions/action';
+import { updateChannelProduct, updatePositionApi, updateSetting, updateSwProduct, updateTikTokOrder } from '../actions/action';
 
 const env = 1
 const PRODUCT_DOMAIN = env === 1 ? 'https://sw-service-production.up.railway.app' : 'http://localhost:8080'
@@ -158,5 +158,38 @@ export const printOrder = (
       window.open(res.data.data);
     }
     dispatch(updatePositionApi('printOrder', false))
+  });
+}
+
+export const getSwProduct = (query, page, limit) => (dispatch, getState) => {
+  dispatch(updatePositionApi('getSwProducts', true))
+  dispatch(updateSwProduct('swProducts', []));
+  var search = `tenantId=1&query=${query}&page=${page - 1}&limit=${limit}`;
+  var options = {
+    url: `/api/v1/products/filter?${search}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    if (res?.data?.data?.products) {
+      dispatch(updateSwProduct('swProducts', res.data.data.products));
+    }
+    dispatch(updatePositionApi('getSwProducts', false))
+  });
+};
+
+
+export const crawlTiktokOrder = (
+  connectionIds,
+  fromDate, toDate
+) => (dispatch, getState) => {
+  dispatch(updatePositionApi('crawlOrders', true))
+  var options = {
+    url: `/api/v1/tiktok-orders/crawl?connectionIds=${connectionIds}&fromDate=${fromDate}&toDate=${toDate}`,
+    method: "GET",
+  };
+
+  callApi(options).then((res) => {
+    dispatch(updatePositionApi('crawlOrders', false))
   });
 }

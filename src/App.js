@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { getConnections } from './apis/settingApi';
 import TikTokOrder from './pages/tiktokOrder/TiktokOrder';
 import Processing from './pages/modal/Processing';
+import SwProductWrapper from './pages/sw-product/SwProductWrapper';
 
 function App() {
   const location = useLocation();
@@ -91,7 +92,7 @@ function App() {
             <Route path='/sw-frontend' element={<Setting />} />
             <Route path='/sw-frontend/tiktok-product' element={<Product />} />
             <Route path='/sw-frontend/tiktok-setting' element={<Setting />} />
-            <Route path='/sw-frontend/product' element={<Product />} />
+            <Route path='/sw-frontend/product' element={<SwProductWrapper />} />
             <Route path='/sw-frontend/order' element={<TikTokOrder />} />
             <Route path='/sw-frontend/tiktok-order' element={<TikTokOrder />} />
           </Routes>

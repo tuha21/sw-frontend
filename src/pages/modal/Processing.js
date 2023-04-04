@@ -10,6 +10,7 @@ function Processing (props) {
         || item === 'quickMap' 
         || item === 'quickCreate'
         || item === 'printOrder'
+        || item === 'crawlOrders'
     );
 
     const renderItem = (item) => {
@@ -25,6 +26,9 @@ function Processing (props) {
         }
         if (item === 'printOrder') {
             label = 'In đơn hàng';
+        }
+        if (item === 'crawlOrders') {
+            label = 'Cập nhật đơn hàng mới';
         }
         return (
             <div className="processing-item">

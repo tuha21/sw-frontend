@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import TikTokOrderItem from "./TiktokOrderItem";
 import SelectConnection from "../../components/SelectConnection";
 import { useDispatch, useSelector } from "react-redux";
-import { getTikTokOrders } from "../../apis/settingApi";
+import { crawlTiktokOrder, getTikTokOrders } from "../../apis/settingApi";
+import CrawlModal from "../modal/CrawlModal";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
 
@@ -22,6 +23,7 @@ function TikTokOrderList (props) {
     const [page, setPage] = useState({ id: 1,limit: 20 });
     const [query, setQuery] = useState('');
     const [selectedConnections, setSelectConnections] = useState(connections?.map(c => c.id) || []);
+    const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,6 +42,10 @@ function TikTokOrderList (props) {
        setQuery(query);
     }
 
+    const onSubmitCrawl = (connectionIds, fromDate, toDate) => {
+        dispatch(crawlTiktokOrder(connectionIds, fromDate, toDate));
+    }
+
     const renderFilterStatus = () => {
         return listStatusFilter.map((item, index) => {
             return <div 
@@ -54,11 +60,13 @@ function TikTokOrderList (props) {
     return (
         <React.Fragment>
             <div className="tiktok-order-filter">
+                {showModal ? <CrawlModal closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
                 <div className="tiktok-order-filter-connection">
                     <SelectConnection 
                         handleChangeSelectedConnection={handleChangeSelectedConnection}
                     />
                     <Button
+                        onClick={() => setShowModal(true)}
                         children={"Cập nhật dữ liệu đơn hàng"}
                     />
                 </div>
