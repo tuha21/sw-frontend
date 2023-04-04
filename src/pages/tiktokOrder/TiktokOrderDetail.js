@@ -1,10 +1,12 @@
 import { useState } from "react"
 import TikTokOrderItemTab from "./TiktokOrderItemTab";
 import '../../style/tiktokOrderDetail.scss';
+import TiktokOrderIMappingTab from "./TiktokOrderIMappingTab";
 
 const tabs = [
     {id: 1, label: 'Sản phẩm trong đơn'},
-    {id: 2, label: 'Lịch sử giao hàng'}
+    {id: 2, label: 'Liên kết sản phẩm'},
+    {id: 3, label: 'Lịch sử giao hàng'}
 ]
 function TikTokOrderDetail (props) {
     const { tiktokOrder } = props;
@@ -29,6 +31,10 @@ function TikTokOrderDetail (props) {
             case 1: 
                 return (
                     <TikTokOrderItemTab tiktokOrder={tiktokOrder}/>
+                )
+            case 2:
+                return (
+                    <TiktokOrderIMappingTab tiktokOrder={tiktokOrder}/>
                 )
             default: return null;
         }
