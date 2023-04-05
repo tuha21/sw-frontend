@@ -11,6 +11,7 @@ function Processing (props) {
         || item === 'quickCreate'
         || item === 'printOrder'
         || item === 'crawlOrders'
+        || item === 'confirmOrder'
     );
 
     const renderItem = (item) => {
@@ -29,6 +30,9 @@ function Processing (props) {
         }
         if (item === 'crawlOrders') {
             label = 'Cập nhật đơn hàng mới';
+        }
+        if (item === 'confirmOrder') {
+            label = 'Xác nhận đơn hàng';
         }
         return (
             <div className="processing-item">

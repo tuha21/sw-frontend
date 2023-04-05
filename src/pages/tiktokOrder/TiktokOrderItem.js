@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TikTokOrderDetail from "./TiktokOrderDetail";
 import { useDispatch } from "react-redux";
-import { printOrder } from "../../apis/settingApi";
+import {confirmOrder, crawlTiktokOrder, printOrder} from "../../apis/settingApi";
+import CrawlModal from "../modal/CrawlModal";
+import ConfirmModal from "../modal/ConfirmModal";
 
 const { ArrowChevronBigDownIcon, Chip, CircleCheckOutlineIcon, ExtraPrintIcon, ArrowChevronBigUpIcon } = require("@sapo-presentation/sapo-ui-components");
 
@@ -19,6 +21,12 @@ const getTimeText = (time) => {
 
 const getStatusLabel = (status) => {
     switch (status) {
+        case 100: return 'Chờ thanh toán';
+        case 111: return 'Chờ vận chuyển';
+        case 112: return 'Chờ giao hàng';
+        case 121: return 'Đang giao hàng';
+        case 122: return 'Đã giao hàng';
+        case 130: return 'Hoàn thành';
         case 140: return 'Đã hủy';
         default: return status;
     }
@@ -27,14 +35,20 @@ const getStatusLabel = (status) => {
 function TikTokOrderItem(props) {
     const { tiktokOrder } = props;
     const [showDetail, setShowDetail] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const printOrderTiktok = () => {
         dispatch(printOrder(tiktokOrder.tiktok_order.id));
     }
-    
+
+    const onSubmitConfirm = (type) => {
+        dispatch(confirmOrder(type, tiktokOrder.tiktok_order.id))
+    }
+
     return (
         <div key={tiktokOrder.tiktok_order.id} className="tiktok-order-item tiktok-order-list-body">
+            {showModal ? <ConfirmModal closeModal={setShowModal} onSubmit={onSubmitConfirm}/> : null}
             <div className="tiktok-order-item-info">
                 <div className="tiktok-order-number">
                     <div onClick={() => setShowDetail(!showDetail)}>
@@ -56,7 +70,7 @@ function TikTokOrderItem(props) {
                     {tiktokOrder.tiktok_order.tracking_code}
                 </div>
                 <div className="tiktok-order-action">
-                    <CircleCheckOutlineIcon />
+                    <CircleCheckOutlineIcon onClick={() => setShowModal(true)}/>
                     <ExtraPrintIcon onClick={() => printOrderTiktok()} />
                 </div>
             </div>

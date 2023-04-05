@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSwProduct } from "../../apis/settingApi";
+import { getSwProducts } from "../../apis/settingApi";
 import { Button, Checkbox, Pagination, PlusIcon, SearchBox } from "@sapo-presentation/sapo-ui-components";
 import "../../style/swProduct.scss";
 import CrawlModal from "../modal/CrawlModal";
@@ -14,7 +14,7 @@ function SwProductWrapper(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getSwProduct("", page.id, page.limit))
+        dispatch(getSwProducts("", page.id, page.limit))
     }, [page]);
 
     const handleChangePage = (id, limit) => {

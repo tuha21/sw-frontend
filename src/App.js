@@ -6,11 +6,12 @@ import Setting from './pages/setting/Setting';
 import './style/app.scss';
 import { breakCrumbIcon, orderIcon, settingIcon } from './svg/svgIcon';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { getConnections } from './apis/settingApi';
 import TikTokOrder from './pages/tiktokOrder/TiktokOrder';
 import Processing from './pages/modal/Processing';
 import SwProductWrapper from './pages/sw-product/SwProductWrapper';
+import SwAlerts from "./components/SwAlerts";
 
 function App() {
   const location = useLocation();
@@ -57,6 +58,7 @@ function App() {
 
   return (
     <div className="app">
+      <SwAlerts />
       <div className="siderbar">
         <div className='app-name'>SaleWork</div>
         <div className={`siderbar-item ${isCurrentPath('/sw-frontend/product') ? 'active-menu' : ''}`}>

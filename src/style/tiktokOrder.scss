@@ -29,9 +29,23 @@
             padding: 0px 10px 10px 10px;
         }
     }
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        background-color: #fff;
+    }
     .tiktok-order-list {
+        .empty-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-color: #fff;
+        }
         .tiktok-order-list-header {
-            padding: 10px 0px;
+            padding: 10px 0;
             font-weight: 500;
             .tiktok-order-number {
                 padding-left: 65px;

@@ -23,3 +23,9 @@ export const updateSwProduct = (field, value) => ({
     type: 'update_sw_product',
     field, value
 })
+
+export const updateAlerts = (value, status) => ({
+    type: 'update_alerts',
+    status,
+    value
+})

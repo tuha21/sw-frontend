@@ -1,5 +1,6 @@
 const initState = {
-    positionApi: []
+    positionApi: [],
+    alerts: []
 }
 
 const env = (state = initState, action) => {
@@ -15,7 +16,20 @@ const env = (state = initState, action) => {
                 ...state,
                 positionApi: [...state.positionApi, action.value]
             }
-        } 
+        }
+        case 'update_alerts' : {
+            debugger
+            if (!action.status) {
+                return {
+                    ...state,
+                    alerts: [...state.alerts].filter(item => item.value !== action.value.value)
+                }
+            }
+            return {
+                ...state,
+                alerts: [...state.alerts, action.value]
+            }
+        }
         default: return state;
     }
 }

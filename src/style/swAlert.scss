@@ -1,0 +1,27 @@
+.sw-alerts-wrapper {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  .sw-alerts {
+    .sw-alert {
+      color: #ffffff;
+      border-radius: 4px;
+      height: 50px;
+      width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: margin-top 1s;
+      margin-top: 20px;
+    }
+
+    .error {
+      background: #EE4747;
+    }
+
+    .success {
+      background: #0DB473;
+    }
+  }
+}

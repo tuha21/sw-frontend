@@ -4,6 +4,7 @@ import SelectConnection from "../../components/SelectConnection";
 import { useDispatch, useSelector } from "react-redux";
 import { crawlTiktokOrder, getTikTokOrders } from "../../apis/settingApi";
 import CrawlModal from "../modal/CrawlModal";
+import {LoadingCircularProgress} from "@sapo-presentation/sapo-ui-components";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
 
@@ -18,6 +19,7 @@ function TikTokOrderList (props) {
     const connections = useSelector(state => state?.setting?.connections) || [];
     const tiktokOrders = useSelector(state => state?.tiktokOrders?.orderList) || [];
     const totalOrder = useSelector(state => state?.tiktokOrders?.totalOrder);
+    const positionApi = useSelector(state => state?.env?.positionApi);
 
     const [filterStatus, setFilterStatus] = useState(1);
     const [page, setPage] = useState({ id: 1,limit: 20 });
@@ -57,6 +59,15 @@ function TikTokOrderList (props) {
         })
     }
 
+    const renderNotFound = () => {
+        return (
+            <div className="empty-list">
+                <img src='https://social.dktcdn.net/facebook/files/search-empty.png' alt='' />
+            </div>
+        )
+    }
+
+    const isFetchOrders = positionApi.includes('getTikTokOrders')
     return (
         <React.Fragment>
             <div className="tiktok-order-filter">
@@ -77,34 +88,49 @@ function TikTokOrderList (props) {
                     <SearchBox 
                         placeholder="Tìm kiếm theo mã đơn hàng"
                         onChange={onQuery}
+                        value={query}
                     />
                 </div>
             </div>
-            <div className="tiktok-order-list">
-                <div className="tiktok-order-item tiktok-order-list-header">
-                    <div className="tiktok-order-item-info">
-                        <div className="tiktok-order-number">Mã đơn hàng</div>
-                        <div className="tiktok-order-issued-at">Ngày tạo</div>
-                        <div className="tiktok-order-status">Trạng thái trên sàn</div>
-                        <div className="tiktok-order-shipping-carrier">Vận chuyển</div>
-                        <div className="tiktok-order-tracking-code">Mã vận đơn</div>
-                        <div className="tiktok-order-action">Thao tác</div>
+            {
+                isFetchOrders ? (
+                    <div className="loading">
+                        <LoadingCircularProgress />
                     </div>
-                </div>
-                {
-                    tiktokOrders.map(item => {
-                        return <TikTokOrderItem tiktokOrder={item} />
-                    })
-                }
-                <div className="tiktok-order-paginate">
-                    <Pagination 
-                        total={totalOrder}
-                        limit={page.limit}
-                        currentPage={page.id}
-                        onChange={handleChangePage}
-                    />
-                </div>
-            </div>
+                ) : (
+                    <div className="tiktok-order-list">
+                        {
+                            tiktokOrders?.length ? (
+                                    <>
+                                        <div className="tiktok-order-item tiktok-order-list-header">
+                                            <div className="tiktok-order-item-info">
+                                                <div className="tiktok-order-number">Mã đơn hàng</div>
+                                                <div className="tiktok-order-issued-at">Ngày tạo</div>
+                                                <div className="tiktok-order-status">Trạng thái trên sàn</div>
+                                                <div className="tiktok-order-shipping-carrier">Vận chuyển</div>
+                                                <div className="tiktok-order-tracking-code">Mã vận đơn</div>
+                                                <div className="tiktok-order-action">Thao tác</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            tiktokOrders.map(item => {
+                                                return <TikTokOrderItem tiktokOrder={item} />
+                                            })
+                                        }
+                                    </>
+                            ) : (renderNotFound())
+                        }
+                        <div className="tiktok-order-paginate">
+                            <Pagination
+                                total={totalOrder}
+                                limit={page.limit}
+                                currentPage={page.id}
+                                onChange={handleChangePage}
+                            />
+                        </div>
+                    </div>
+                )
+            }
         </React.Fragment>
     )
 }

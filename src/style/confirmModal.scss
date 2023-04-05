@@ -1,0 +1,38 @@
+.confirm-content {
+  display: flex;
+  justify-content: space-between;
+  .title {
+    font-weight: 500;
+  }
+
+  .active {
+    background: #f2f9ff;
+    border: 1px solid #08f !important;
+  }
+
+  .tiktok-pick-up {
+    svg {
+      margin-right: 15px;
+    }
+    border: 1px solid #e8eaeb;
+    border-radius: 3px;
+    width: calc(50% - 4px);
+    padding: 8px 7px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+  }
+  .seller-pick-up
+  {
+    svg {
+      margin-right: 15px;
+    }
+    border: 1px solid #e8eaeb;
+    border-radius: 3px;
+    width: calc(50% - 4px);
+    padding: 8px 7px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+  }
+}
