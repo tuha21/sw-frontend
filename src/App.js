@@ -65,10 +65,6 @@ function App() {
           {settingIcon()}
           <Link to={'/sw-frontend/product'}>Sản phẩm</Link>
         </div>
-        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/order') ? 'active-menu' : ''}`}>
-          {settingIcon()}
-          <Link to={'/sw-frontend/order'}>Đơn hàng</Link>
-        </div>
         <div className={`siderbar-item ${isCurrentPath('/sw-frontend/tiktok-product') ? 'active-menu' : ''}`}>
           {orderIcon()}
           <Link to={'/sw-frontend/tiktok-product'}>Sản phẩm TikTokShop</Link>

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSwProducts } from "../../apis/settingApi";
 import { Button, Checkbox, Pagination, PlusIcon, SearchBox } from "@sapo-presentation/sapo-ui-components";
 import "../../style/swProduct.scss";
-import CrawlModal from "../modal/CrawlModal";
 
 function SwProductWrapper(props) {
 
