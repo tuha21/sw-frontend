@@ -163,7 +163,7 @@ export const printOrder = (
       await new Promise(resolve => setTimeout(resolve, 2000))
       dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
     } else {
-      dispatch(updateAlerts({value: res.data.error, type: 'success'}, true))
+      dispatch(updateAlerts({value: "Tạo mẫu in thành công", type: 'success'}, true))
       await new Promise(resolve => setTimeout(resolve, 2000))
       dispatch(updateAlerts({value: "Tạo mẫu in thành công", type: 'success'}, false))
       window.open(res.data.data);
@@ -214,8 +214,6 @@ export const crawlTiktokOrder = (
   });
 }
 
-
-
 export const confirmOrder = (
     type,
     id
@@ -232,7 +230,7 @@ export const confirmOrder = (
       await new Promise(resolve => setTimeout(resolve, 2000))
       dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
     } else {
-      dispatch(updateAlerts({value: res.data.error, type: 'success'}, true))
+      dispatch(updateAlerts({value: "Xác nhận đơn hàng thành công", type: 'success'}, true))
       await new Promise(resolve => setTimeout(resolve, 2000))
       dispatch(updateAlerts({value: "Xác nhận đơn hàng thành công", type: 'success'}, false))
       window.open(res.data.data);
