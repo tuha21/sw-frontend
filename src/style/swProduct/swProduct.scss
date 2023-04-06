@@ -11,6 +11,21 @@
         padding: 0px 16px 16px 16px;
     }
     .sw-product-list {
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-color: #fff;
+        }
+
+        .empty-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-color: #fff;
+        }
         .sw-product-list-item {
             display: flex;
             align-items: center;

@@ -1,11 +1,11 @@
 import { RefreshIcon } from "@sapo-presentation/sapo-ui-components";
 import { useState } from "react";
 import { createIcon, drillIcon, mappingIcon } from "../../svg/svgIcon";
-import ProductVariantMapping from "./ProductVariantMapping";
+import TiktokVariantMapping from "./TiktokVariantMapping";
 import { useDispatch } from "react-redux";
-import { quickCreate, quickMap } from "../../apis/settingApi";
+import {quickCreate, quickMap} from "../../apis/tiktokProductApi";
 
-function ProductVariant(props) {
+function TiktokVariant(props) {
     const { variant } = props;
 
     const [dillStatus, setDrillStatus] = useState(false);
@@ -65,11 +65,11 @@ function ProductVariant(props) {
             {
                 dillStatus ? (
                     <div className="product-mapping-wrapper">
-                        <ProductVariantMapping variant={variant}/>
+                        <TiktokVariantMapping variant={variant}/>
                     </div>
                 ) : null
             }
         </div>
     );
 }
-export default ProductVariant;
+export default TiktokVariant;

@@ -1,5 +1,5 @@
 import { LoadingCircularProgress } from "@sapo-presentation/sapo-ui-components";
-import '../../style/processing.scss';
+import '../../style/modal/processing.scss';
 import { useSelector } from "react-redux";
 
 function Processing (props) {

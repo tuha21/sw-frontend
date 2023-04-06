@@ -1,5 +1,6 @@
 const initState = {
     swProducts: [],
+    totalProduct: 0
 }
 
 const swProduct = (state = initState, action) => {

@@ -1,8 +1,8 @@
 import { Button, DatePickerPlus, Dialog, DialogActions, DialogContent, DialogTitle } from "@sapo-presentation/sapo-ui-components";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import SelectConnection from "../../components/SelectConnection";
-import '../../style/crawlModal.scss';
+import SelectConnection from "../SelectConnection";
+import '../../style/modal/crawlModal.scss';
 
 function CrawlModal(props) {
 

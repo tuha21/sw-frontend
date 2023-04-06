@@ -1,7 +1,7 @@
-import '../style/swAlert.scss';
+import '../style/modal/swAlert.scss';
 import {useSelector} from "react-redux";
 
-function SwAlerts (props) {
+function SwAlerts () {
 
     const alerts = useSelector(state => state.env.alerts)
 

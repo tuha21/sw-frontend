@@ -5,18 +5,18 @@ const { useState } = require("react")
 
 function SelectConnection (props) {
     const connections = useSelector(state => state?.setting?.connections) || [];
-    const [selecteds, setSelecteds] = useState(connections);
+    const [selects, setSelects] = useState(connections);
     const { handleChangeSelectedConnection } = props;
     const onClose = () => {
-        handleChangeSelectedConnection(selecteds.map(connection => connection.id));
+        handleChangeSelectedConnection(selects.map(connection => connection.id));
     }
     return (
         <div className="select-connection">
             <Dropdown 
                 placeholder="Chọn gian hàng"
                 multiple
-                value={selecteds}
-                onChange={setSelecteds}
+                value={selects}
+                onChange={setSelects}
                 renderOption={e => e.name}
                 options={connections}
                 highlight={true}

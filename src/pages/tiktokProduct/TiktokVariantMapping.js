@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { bigUnMappingIcon, tiktokIcon } from "../../svg/svgIcon";
 
-function ProductVariantMapping(props) {
+function TiktokVariantMapping(props) {
     const { variant } = props;
     const connections = useSelector(state => state.setting.connections);
 
@@ -43,4 +43,4 @@ function ProductVariantMapping(props) {
     )
 
 }
-export default ProductVariantMapping;
+export default TiktokVariantMapping;

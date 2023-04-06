@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import TikTokOrderDetail from "./TiktokOrderDetail";
 import { useDispatch } from "react-redux";
-import {confirmOrder, crawlTiktokOrder, printOrder} from "../../apis/settingApi";
-import CrawlModal from "../modal/CrawlModal";
-import ConfirmModal from "../modal/ConfirmModal";
-
+import ConfirmModal from "../../components/modal/ConfirmModal";
+import {confirmOrder, printOrder} from "../../apis/tiktokOrderApi";
 const { ArrowChevronBigDownIcon, Chip, CircleCheckOutlineIcon, ExtraPrintIcon, ArrowChevronBigUpIcon } = require("@sapo-presentation/sapo-ui-components");
 
 
 const getTimeText = (time) => {
-    var date = new Date(time * 1000);
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
+    const date = new Date(time * 1000);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = "0" + date.getMinutes();
+    const seconds = "0" + date.getSeconds();
     return day + '/' + month + '/' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 }
 
@@ -34,40 +32,42 @@ const getStatusLabel = (status) => {
 
 function TikTokOrderItem(props) {
     const { tiktokOrder } = props;
+    const { tiktok_order } = tiktokOrder;
+
     const [showDetail, setShowDetail] = useState(true);
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const printOrderTiktok = () => {
-        dispatch(printOrder(tiktokOrder.tiktok_order.id));
+        dispatch(printOrder(tiktok_order.id));
     }
 
     const onSubmitConfirm = (type) => {
-        dispatch(confirmOrder(type, tiktokOrder.tiktok_order.id))
+        dispatch(confirmOrder(type, tiktok_order.id))
     }
 
     return (
-        <div key={tiktokOrder.tiktok_order.id} className="tiktok-order-item tiktok-order-list-body">
+        <div key={tiktok_order.id} className="tiktok-order-item tiktok-order-list-body">
             {showModal ? <ConfirmModal closeModal={setShowModal} onSubmit={onSubmitConfirm}/> : null}
             <div className="tiktok-order-item-info">
                 <div className="tiktok-order-number">
                     <div onClick={() => setShowDetail(!showDetail)}>
                         {showDetail ? <ArrowChevronBigUpIcon /> : <ArrowChevronBigDownIcon />}
                     </div>
-                    {tiktokOrder.tiktok_order.order_number}   
-                    {tiktokOrder.tiktok_order.has_print ? <Chip variant="success" label="Đã in" /> : null}
+                    {tiktok_order.order_number}
+                    {tiktok_order.has_print ? <Chip variant="success" label="Đã in" /> : null}
                 </div>
                 <div className="tiktok-order-issued-at">
-                    {getTimeText(tiktokOrder.tiktok_order.issued_at)}
+                    {getTimeText(tiktok_order.issued_at)}
                 </div>
                 <div className="tiktok-order-status">
-                    {getStatusLabel(tiktokOrder.tiktok_order.order_status)}
+                    {getStatusLabel(tiktok_order.order_status)}
                 </div>
                 <div className="tiktok-order-shipping-carrier">
-                    {tiktokOrder.tiktok_order.shipping_carrier}
+                    {tiktok_order.shipping_carrier}
                 </div>
                 <div className="tiktok-order-tracking-code">
-                    {tiktokOrder.tiktok_order.tracking_code}
+                    {tiktok_order.tracking_code}
                 </div>
                 <div className="tiktok-order-action">
                     <CircleCheckOutlineIcon onClick={() => setShowModal(true)}/>

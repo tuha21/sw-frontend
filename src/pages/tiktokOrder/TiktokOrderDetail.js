@@ -1,6 +1,6 @@
 import { useState } from "react"
 import TikTokOrderItemTab from "./TiktokOrderItemTab";
-import '../../style/tiktokOrderDetail.scss';
+import '../../style/tiktokOrder/tiktokOrderDetail.scss';
 import TiktokOrderIMappingTab from "./TiktokOrderIMappingTab";
 
 const tabs = [

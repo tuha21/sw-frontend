@@ -1,5 +1,7 @@
 function TikTokOrderItemTab(props) {
     const { tiktokOrder } = props;
+    const { tiktok_order_items, tiktok_order } = tiktokOrder;
+
     return (
         <div className="tiktok-order-item-tab">
             <div className="tiktok-order-item-item tiktok-order-item-header">
@@ -8,7 +10,7 @@ function TikTokOrderItemTab(props) {
                 <div className="tiktok-order-item-price">Giá bán</div>
             </div>
             {
-                tiktokOrder.tiktok_order_items.map(item => {
+                tiktok_order_items.map(item => {
                     return (
                         <div key={item.id} className="tiktok-order-item-item tiktok-order-item-body">
                             <div className="tiktok-order-item-product">
@@ -29,7 +31,7 @@ function TikTokOrderItemTab(props) {
                 })
             }
             <div className="tiktok-order-item-item tiktok-order-item-footer">
-                <div className="tiktok-order-item-amount">Tổng: {tiktokOrder.tiktok_order.total_amount}</div>
+                <div className="tiktok-order-item-amount">Tổng: {tiktok_order.total_amount}</div>
             </div>
         </div>
     )

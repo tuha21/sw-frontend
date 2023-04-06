@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import TikTokOrderItem from "./TiktokOrderItem";
 import SelectConnection from "../../components/SelectConnection";
 import { useDispatch, useSelector } from "react-redux";
-import { crawlTiktokOrder, getTikTokOrders } from "../../apis/settingApi";
-import CrawlModal from "../modal/CrawlModal";
+import CrawlModal from "../../components/modal/CrawlModal";
 import {LoadingCircularProgress} from "@sapo-presentation/sapo-ui-components";
+import {crawlTiktokOrder, getTikTokOrders} from "../../apis/tiktokOrderApi";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
 

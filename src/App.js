@@ -1,7 +1,7 @@
 import {
   Route, Routes, Link, useLocation
 } from 'react-router-dom';
-import Product from './pages/product/Product';
+import TiktokProductWrapper from './pages/tiktokProduct/TiktokProductWrapper';
 import Setting from './pages/setting/Setting';
 import './style/app.scss';
 import { breakCrumbIcon, orderIcon, settingIcon } from './svg/svgIcon';
@@ -9,8 +9,8 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { getConnections } from './apis/settingApi';
 import TikTokOrder from './pages/tiktokOrder/TiktokOrder';
-import Processing from './pages/modal/Processing';
-import SwProductWrapper from './pages/sw-product/SwProductWrapper';
+import Processing from './components/modal/Processing';
+import SwProductWrapper from './pages/swProduct/SwProductWrapper';
 import SwAlerts from "./components/SwAlerts";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/sw-frontend/tiktok-product':
+      case '/sw-frontend/tiktok-tiktokProduct':
         setPathTitle('Sản phẩm TikTokShop');
         break;
       case '/sw-frontend/tiktok-order':
@@ -34,7 +34,7 @@ function App() {
       case '/sw-frontend/':
         setPathTitle('Cấu hình');
         break;
-      case '/sw-frontend/product':
+      case '/sw-frontend/tiktokProduct':
         setPathTitle('Sản phẩm');
         break;
       case '/sw-frontend/order':
@@ -61,11 +61,11 @@ function App() {
       <SwAlerts />
       <div className="siderbar">
         <div className='app-name'>SaleWork</div>
-        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/product') ? 'active-menu' : ''}`}>
+        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/tiktokProduct') ? 'active-menu' : ''}`}>
           {settingIcon()}
           <Link to={'/sw-frontend/product'}>Sản phẩm</Link>
         </div>
-        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/tiktok-product') ? 'active-menu' : ''}`}>
+        <div className={`siderbar-item ${isCurrentPath('/sw-frontend/tiktok-tiktokProduct') ? 'active-menu' : ''}`}>
           {orderIcon()}
           <Link to={'/sw-frontend/tiktok-product'}>Sản phẩm TikTokShop</Link>
         </div>
@@ -88,7 +88,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Setting />} />
             <Route path='/sw-frontend' element={<Setting />} />
-            <Route path='/sw-frontend/tiktok-product' element={<Product />} />
+            <Route path='/sw-frontend/tiktok-product' element={<TiktokProductWrapper />} />
             <Route path='/sw-frontend/tiktok-setting' element={<Setting />} />
             <Route path='/sw-frontend/product' element={<SwProductWrapper />} />
             <Route path='/sw-frontend/order' element={<TikTokOrder />} />

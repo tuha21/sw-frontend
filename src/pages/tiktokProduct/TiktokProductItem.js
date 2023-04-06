@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { drillIcon } from "../../svg/svgIcon";
-import ProductVariant from "./ProductVariant";
+import TiktokVariant from "./TiktokVariant";
 
-function ProductItem(props) {
+function TiktokProductItem(props) {
 
     const [dillStatus, setDrillStatus] = useState(false);
 
@@ -22,7 +22,7 @@ function ProductItem(props) {
                     </div>
                     <div className="info-product">
                         <div className="product-name">{product.name}</div>
-                        <div className="variant-info">{'3 phiên bản'}</div>
+                        <div className="variant-info">{channelProduct.variants.length}&nbsp;phiên bản</div>
                     </div>
                 </div>
                 <div className="col-2">
@@ -39,7 +39,7 @@ function ProductItem(props) {
                 dillStatus ? (
                     <div className="product-vatiant-list">
                         {channelProduct?.variants?.map((v, i) => {
-                            return <ProductVariant variant={v} />
+                            return <TiktokVariant variant={v} />
                         })}
                     </div>
                 ) : null
@@ -47,4 +47,4 @@ function ProductItem(props) {
         </div>
     );
 }
-export default ProductItem;
+export default TiktokProductItem;

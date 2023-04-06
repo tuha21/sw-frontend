@@ -1,4 +1,4 @@
-import { Button, PlusCircleIcon, RefreshIcon } from "@sapo-presentation/sapo-ui-components";
+import { Button, PlusCircleIcon } from "@sapo-presentation/sapo-ui-components";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connectShop, getConnections } from "../../apis/settingApi";

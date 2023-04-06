@@ -1,13 +1,13 @@
 import { LoadingCircularProgress, Pagination } from "@sapo-presentation/sapo-ui-components";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { crawlTiktokProduct, getChannelProducts } from "../../apis/settingApi";
-import "../../style/product.scss"
-import ProductItem from "./ProductItem";
+import "../../style/tiktokProduct/tiktokProduct.scss"
+import TiktokProductItem from "./TiktokProductItem";
 import SelectConnection from "../../components/SelectConnection";
-import CrawlModal from "../modal/CrawlModal";
+import CrawlModal from "../../components/modal/CrawlModal";
+import {crawlTiktokProduct, getChannelProducts} from "../../apis/tiktokProductApi";
 
-function Product() {
+function TiktokProductWrapper() {
 
     const connections = useSelector(state => state?.setting?.connections) || [];
 
@@ -21,16 +21,23 @@ function Product() {
 
     useEffect(() => {
         dispatch(getChannelProducts(selectedConnections, query, mappingStatus, page.id, page.limit));
-    }, [mappingStatus, page, selectedConnections, query])
+    }, [mappingStatus, page, selectedConnections])
+
+    useEffect(() => {
+        if (query.length >= 3 || query.length === 0) {
+            dispatch(getChannelProducts(selectedConnections, query, mappingStatus, page.id, page.limit));
+        }
+    }, [query])
 
     const channelProducts = useSelector(state => state?.channelProduct?.channelProducts || []);
     const positionApi = useSelector(state => state?.env?.positionApi);
+    const total = useSelector(state => state.channelProduct.total);
 
     const onSearch = (e) => {
         setQuery(e.target.value);
     }
 
-    const channgeTab = (tab) => {
+    const changeTab = (tab) => {
         setMappingStatus(tab);
     }
     
@@ -44,7 +51,7 @@ function Product() {
 
     const renderChannelProduct = () => {
         return channelProducts.map((v, i) => {
-            return <ProductItem channelProduct={v} />
+            return <TiktokProductItem channelProduct={v} />
         });
     }
 
@@ -80,13 +87,13 @@ function Product() {
             <div className="product-quick-filter">
                 <div className="filter-tab">
                     <span className={mappingStatus === 1 ? 'active' : ''}
-                        onClick={() => channgeTab(1)}
+                        onClick={() => changeTab(1)}
                     >Tất cả sản phẩm</span>
                     <span className={mappingStatus === 2 ? 'active' : ''}
-                        onClick={() => channgeTab(2)}
+                        onClick={() => changeTab(2)}
                     >Đã liên kết</span>
                     <span className={mappingStatus === 3 ? 'active' : ''}
-                        onClick={() => channgeTab(3)}
+                        onClick={() => changeTab(3)}
                     >Chưa liên kết</span>
                 </div>
                 <div className="filter-text">
@@ -114,7 +121,7 @@ function Product() {
                             </div>
                         )}
                         <Pagination
-                                    total={100}
+                                    total={total}
                                     limit={page.limit}
                                     currentPage={page.id}
                                     onChange={handleChangePage}
@@ -127,4 +134,4 @@ function Product() {
 
 }
 
-export default Product;
+export default TiktokProductWrapper;

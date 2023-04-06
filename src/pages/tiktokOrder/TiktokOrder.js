@@ -1,5 +1,5 @@
 import TikTokOrderList from "./TiktokOrderList";
-import '../../style/tiktokOrder.scss';
+import '../../style/tiktokOrder/tiktokOrder.scss';
 
 function TikTokOrder (props) {
     return (

@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@sapo-presentation/sapo-ui-components";
 import { useState } from "react";
-import '../../style/confirmModal.scss';
+import '../../style/modal/confirmModal.scss';
 import {HomeBoxIcon, TrolleyBoxIcon} from "../../svg/svgIcon";
 
 function ConfirmModal(props) {

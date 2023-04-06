@@ -1,5 +1,6 @@
 const initState = {
     channelProducts: [],
+    totalProduct: 0
 }
 
 const channelProduct = (state = initState, action) => {
