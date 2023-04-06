@@ -64,6 +64,9 @@
             .tiktok-order-tracking-code {
                 color: #0088FF;
             }
+            .active {
+                color: #0DB473;
+            }
         }
         .tiktok-order-item {
             margin-bottom: 10px;
@@ -96,11 +99,20 @@
                     width: calc(100% / 6);
                 }
                 .tiktok-order-tracking-code {
-                    width: calc(100% / 6);
+                    width: calc((100% / 6) - 100px);
+                }
+                .tiktok-order-payment {
+                    display: flex;
+                    width: 100px;
+                    justify-content: center;
+                    svg {
+                        width: 20px;
+                    }
                 }
                 .tiktok-order-action {
                     width: calc((100% / 6) - 40px);
                     display: flex;
+                    justify-content: center;
                     svg {
                         width: 24px;
                         height: 24px;

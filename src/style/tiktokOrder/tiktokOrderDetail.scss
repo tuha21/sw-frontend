@@ -60,4 +60,20 @@
             }
         }
     }
+    .order-history-wrapper {
+        padding: 16px;
+        background-color: #f5f9fd;
+        .order-history-item {
+            display: flex;
+            svg {
+                width: 10px;
+                color: #0088FF;
+                margin-right: 10px;
+            }
+            .time {
+                font-weight: bold;
+                width: 150px;
+            }
+        }
+    }
 }

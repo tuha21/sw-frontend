@@ -30,13 +30,13 @@ function TiktokOrderIMappingTab(props) {
                                 {
                                     vMap ? (
                                         <React.Fragment>
-                                            <img src={item.image} alt="" />
+                                            <img src={vMap.image} alt="" />
                                             <div className="tiktok-order-item-product-info">
                                                 <div className="tiktok-order-item-product-name">
-                                                    {item.name}
+                                                    {vMap.name}
                                                 </div>
                                                 <div className="tiktok-order-item-product-sku">
-                                                    SKU: {item.sku}
+                                                    SKU: {vMap.sku}
                                                 </div>
                                             </div>
                                         </React.Fragment>

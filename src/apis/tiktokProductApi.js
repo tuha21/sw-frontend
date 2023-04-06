@@ -1,4 +1,4 @@
-import {updateChannelProduct, updatePositionApi} from "../actions/action";
+import {updateAlerts, updateChannelProduct, updatePositionApi} from "../actions/action";
 import {callApi} from "./baseApi";
 
 export const getChannelProducts = (selectedConnections, query, mappingStatus, page, limit) => (dispatch, getState) => {
@@ -43,11 +43,15 @@ export const quickMap = (
         method: "GET",
     };
 
-    callApi(options).then((res) => {
+    callApi(options).then(async (res) => {
         if (res?.data?.error) {
-            alert(res.data.error)
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
         } else {
-            alert('Liên kết thàng công')
+            dispatch(updateAlerts({value: "Liên kết sản phẩm thành công", type: 'success'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: "Liên kết sản phẩm thành công", type: 'success'}, false))
         }
         dispatch(updatePositionApi('quickMap', false))
     });
@@ -76,18 +80,22 @@ export const quickCreate = (
 export const unMap = (
     id
 ) => (dispatch, getState) => {
-    dispatch(updatePositionApi('quickMap', true))
+    dispatch(updatePositionApi('unMap', true))
     const options = {
         url: `/api/v1/channel-product/un-map?id=${id}`,
         method: "GET",
     };
 
-    callApi(options).then((res) => {
+    callApi(options).then(async (res) => {
         if (res?.data?.error) {
-            alert(res.data.error)
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
         } else {
-            alert('Hủy liên kết thàng công')
+            dispatch(updateAlerts({value: "Hủy liên kết sản phẩm thành công", type: 'success'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: "Hủy liên kết sản phẩm thành công", type: 'success'}, false))
         }
-        dispatch(updatePositionApi('quickMap', false))
+        dispatch(updatePositionApi('unMap', false))
     });
 }

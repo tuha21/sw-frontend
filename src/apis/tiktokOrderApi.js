@@ -98,15 +98,14 @@ export const printOrder = (
 }
 
 
-export const getOrderHistories = (
+export const getOrderHistories = async (
     id
 ) => {
     const options = {
-        url: `/api/v1/tiktok-orders/print?orderId=${id}`,
+        url: `/api/v1/tiktok-orders/histories?orderId=${id}`,
         method: "GET",
     };
 
-    return callApi(options).then(async (res) => {
-        return res?.data?.data;
-    });
+    const res = await callApi(options);
+    return await res?.data?.data;
 }

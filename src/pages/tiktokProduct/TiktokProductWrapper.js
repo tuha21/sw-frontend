@@ -31,7 +31,7 @@ function TiktokProductWrapper() {
 
     const channelProducts = useSelector(state => state?.channelProduct?.channelProducts || []);
     const positionApi = useSelector(state => state?.env?.positionApi);
-    const total = useSelector(state => state.channelProduct.total);
+    const total = useSelector(state => state.channelProduct.totalProduct);
 
     const onSearch = (e) => {
         setQuery(e.target.value);

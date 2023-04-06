@@ -3,7 +3,7 @@ import TikTokOrderItem from "./TiktokOrderItem";
 import SelectConnection from "../../components/SelectConnection";
 import { useDispatch, useSelector } from "react-redux";
 import CrawlModal from "../../components/modal/CrawlModal";
-import {LoadingCircularProgress} from "@sapo-presentation/sapo-ui-components";
+import {Diot3Icon, LoadingCircularProgress} from "@sapo-presentation/sapo-ui-components";
 import {crawlTiktokOrder, getTikTokOrders} from "../../apis/tiktokOrderApi";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
@@ -109,6 +109,7 @@ function TikTokOrderList (props) {
                                                 <div className="tiktok-order-status">Trạng thái trên sàn</div>
                                                 <div className="tiktok-order-shipping-carrier">Vận chuyển</div>
                                                 <div className="tiktok-order-tracking-code">Mã vận đơn</div>
+                                                <div className="tiktok-order-payment">Thanh toán</div>
                                                 <div className="tiktok-order-action">Thao tác</div>
                                             </div>
                                         </div>

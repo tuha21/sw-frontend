@@ -3,7 +3,7 @@ import TikTokOrderDetail from "./TiktokOrderDetail";
 import { useDispatch } from "react-redux";
 import ConfirmModal from "../../components/modal/ConfirmModal";
 import {confirmOrder, printOrder} from "../../apis/tiktokOrderApi";
-const { ArrowChevronBigDownIcon, Chip, CircleCheckOutlineIcon, ExtraPrintIcon, ArrowChevronBigUpIcon } = require("@sapo-presentation/sapo-ui-components");
+const { ArrowChevronBigDownIcon, Chip, CircleCheckOutlineIcon, ExtraPrintIcon, ArrowChevronBigUpIcon, Diot3Icon } = require("@sapo-presentation/sapo-ui-components");
 
 
 const getTimeText = (time) => {
@@ -68,6 +68,9 @@ function TikTokOrderItem(props) {
                 </div>
                 <div className="tiktok-order-tracking-code">
                     {tiktok_order.tracking_code}
+                </div>
+                <div className={`tiktok-order-payment ${tiktok_order.payment_method ? "active" : ""}`}>
+                    <Diot3Icon />
                 </div>
                 <div className="tiktok-order-action">
                     <CircleCheckOutlineIcon onClick={() => setShowModal(true)}/>

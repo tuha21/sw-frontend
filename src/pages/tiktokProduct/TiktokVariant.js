@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createIcon, drillIcon, mappingIcon } from "../../svg/svgIcon";
 import TiktokVariantMapping from "./TiktokVariantMapping";
 import { useDispatch } from "react-redux";
-import {quickCreate, quickMap} from "../../apis/tiktokProductApi";
+import {quickCreate, quickMap, unMap} from "../../apis/tiktokProductApi";
 
 function TiktokVariant(props) {
     const { variant } = props;
@@ -17,8 +17,13 @@ function TiktokVariant(props) {
     const dispatch = useDispatch();
 
     const quickMapVariant = () => {
-        const { id } = variant;
-        dispatch(quickMap(id));
+        const { id, mapping_id } = variant;
+        if (mapping_id === 0) {
+            dispatch(quickMap(id));
+        } else {
+            dispatch(unMap(id))
+        }
+        
     }
 
     const quickCreateVariant = () => {
@@ -57,9 +62,9 @@ function TiktokVariant(props) {
                     ) : '---'}
                 </div>
                 <div className="col-4">
-                    <div onClick={() => quickMapVariant()}>{mappingIcon()}</div>
+                    <div onClick={() => quickMapVariant()}>{mappingIcon(variant.mapping_id)}</div>
                     <div onClick={() => quickCreateVariant()}>{createIcon()}</div>
-                    <div><RefreshIcon /></div>
+                    {/* <div><RefreshIcon /></div> */}
                 </div>
             </div>
             {
