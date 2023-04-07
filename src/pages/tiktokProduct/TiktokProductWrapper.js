@@ -78,7 +78,7 @@ function TiktokProductWrapper() {
                     />
                 </div>
                 <div className="products-action">
-                    <button className="btn-quick-mapping">Liên kết nhanh</button>
+                    {/*<button className="btn-quick-mapping">Liên kết nhanh</button>*/}
                     <button className="btn-crawl-product"
                         onClick={() => setShowModal(true)}
                     >Cập nhật dữ liệu sản phẩm</button>
