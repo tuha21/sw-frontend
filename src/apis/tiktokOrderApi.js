@@ -109,3 +109,15 @@ export const getOrderHistories = async (
     const res = await callApi(options);
     return await res?.data?.data;
 }
+
+export const getDataPrint = async (
+    connectionIds, fromDate, toDate
+) => {
+    const options = {
+        url: `/api/v1/tiktok-orders/print-report?connectionIds=${connectionIds}&from=${fromDate}&to=${toDate}`,
+        method: "GET",
+    };
+
+    const res = await callApi(options);
+    return await res?.data?.data;
+}

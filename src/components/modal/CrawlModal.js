@@ -28,7 +28,7 @@ function CrawlModal(props) {
 
     return (
         <Dialog>
-            <DialogTitle divider>Cập nhật dữ liệu sản phẩm</DialogTitle>
+            <DialogTitle divider>Cập nhật dữ liệu</DialogTitle>
             <DialogContent>
                 <div className="select-connection">
                     <SelectConnection
@@ -37,7 +37,7 @@ function CrawlModal(props) {
                 </div>
                 <div className="select-time">
                     <DatePickerPlus
-                        placeholder="Chọn thời gian cập nhật"
+                        placeholder="Chọn thời gian"
                         value={value}
                         onChange={setValue}
                         changeOnSubmit

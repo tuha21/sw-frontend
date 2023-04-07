@@ -4,7 +4,7 @@ import SelectConnection from "../../components/SelectConnection";
 import { useDispatch, useSelector } from "react-redux";
 import CrawlModal from "../../components/modal/CrawlModal";
 import {Diot3Icon, LoadingCircularProgress} from "@sapo-presentation/sapo-ui-components";
-import {crawlTiktokOrder, getTikTokOrders} from "../../apis/tiktokOrderApi";
+import {crawlTiktokOrder, getDataPrint, getTikTokOrders} from "../../apis/tiktokOrderApi";
 
 const { Pagination, Button, SearchBox } = require("@sapo-presentation/sapo-ui-components");
 
@@ -26,6 +26,8 @@ function TikTokOrderList (props) {
     const [query, setQuery] = useState('');
     const [selectedConnections, setSelectConnections] = useState(connections?.map(c => c.id) || []);
     const [showModal, setShowModal] = useState(false);
+    const [showModalPrint, setShowModalPrint] = useState(false);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,6 +48,10 @@ function TikTokOrderList (props) {
 
     const onSubmitCrawl = (connectionIds, fromDate, toDate) => {
         dispatch(crawlTiktokOrder(connectionIds, fromDate, toDate));
+    }
+
+    const onSubmitPrint = (connectionIds, fromDate, toDate) => {
+        dispatch(getDataPrint(connectionIds, fromDate, toDate));
     }
 
     const renderFilterStatus = () => {
@@ -72,14 +78,23 @@ function TikTokOrderList (props) {
         <React.Fragment>
             <div className="tiktok-order-filter">
                 {showModal ? <CrawlModal closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
+                {showModalPrint ? <CrawlModal closeModal={setShowModalPrint} onSubmit={onSubmitPrint}/> : null}
                 <div className="tiktok-order-filter-connection">
                     <SelectConnection 
                         handleChangeSelectedConnection={handleChangeSelectedConnection}
                     />
-                    <Button
-                        onClick={() => setShowModal(true)}
-                        children={"Cập nhật dữ liệu đơn hàng"}
-                    />
+                    <div>
+                        <Button
+                            variant={"outlined"}
+                            onClick={() => setShowModalPrint(true)}
+                            children={"In báo cáo doanh thu đơn hàng"}
+                        />
+                        <Button
+                            ml={4}
+                            onClick={() => setShowModal(true)}
+                            children={"Cập nhật dữ liệu đơn hàng"}
+                        />
+                    </div>
                 </div>
                 <div className="tiktok-order-filter-status">
                     {renderFilterStatus()}
