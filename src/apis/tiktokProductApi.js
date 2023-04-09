@@ -99,3 +99,26 @@ export const unMap = (
         dispatch(updatePositionApi('unMap', false))
     });
 }
+
+export const manualMap = (
+    id, variantId
+) => (dispatch, getState) => {
+    dispatch(updatePositionApi('quickMap', true))
+    const options = {
+        url: `/api/v1/channel-product/manual-map?id=${id}&variantId=${variantId}`,
+        method: "GET",
+    };
+
+    callApi(options).then(async (res) => {
+        if (res?.data?.error) {
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
+        } else {
+            dispatch(updateAlerts({value: "Liên kết sản phẩm thành công", type: 'success'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: "Liên kết sản phẩm thành công", type: 'success'}, false))
+        }
+        dispatch(updatePositionApi('quickMap', false))
+    });
+}

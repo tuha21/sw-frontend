@@ -1,14 +1,16 @@
 import { RefreshIcon } from "@sapo-presentation/sapo-ui-components";
 import { useState } from "react";
-import { createIcon, drillIcon, mappingIcon } from "../../svg/svgIcon";
+import { autoMappingIcon, createIcon, drillIcon, manualMappingIcon, mappingIcon } from "../../svg/svgIcon";
 import TiktokVariantMapping from "./TiktokVariantMapping";
 import { useDispatch } from "react-redux";
 import {quickCreate, quickMap, unMap} from "../../apis/tiktokProductApi";
+import ManualMapingModal from "../../components/modal/ManualMappingModal";
 
 function TiktokVariant(props) {
     const { variant } = props;
 
     const [dillStatus, setDrillStatus] = useState(false);
+    const [openList, setOpenList] = useState(false);
 
     const toggleVariant = () => {
         setDrillStatus(!dillStatus)
@@ -23,7 +25,10 @@ function TiktokVariant(props) {
         } else {
             dispatch(unMap(id))
         }
-        
+    }
+
+    const manualMapping = () => {
+        alert("pakspkaos")
     }
 
     const quickCreateVariant = () => {
@@ -62,7 +67,17 @@ function TiktokVariant(props) {
                     ) : '---'}
                 </div>
                 <div className="col-4">
-                    <div onClick={() => quickMapVariant()}>{mappingIcon(variant.mapping_id)}</div>
+                    {variant.mapping_id ? (
+                        <div onClick={() => quickMapVariant()}>{mappingIcon(1)}</div>
+                    ) : (
+                        <>
+                        <div className="mapping-icon" onClick={() => setOpenList(true)}>
+                            {manualMappingIcon()}
+                            {openList ? <ManualMapingModal setOpenList={setOpenList} tiktokVariantId={variant.id}/> : null}
+                        </div>
+                        <div onClick={() => quickMapVariant()}>{autoMappingIcon(variant.mapping_id)}</div>
+                        </>
+                    )}
                     <div onClick={() => quickCreateVariant()}>{createIcon()}</div>
                     {/* <div><RefreshIcon /></div> */}
                 </div>

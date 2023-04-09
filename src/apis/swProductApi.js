@@ -18,3 +18,13 @@ export const getSwProducts = (query, page, limit) => (dispatch, getState) => {
         dispatch(updatePositionApi('getSwProducts', false))
     });
 };
+
+export const getSwProductsToMap = (query, page, limit) => {
+    const search = `tenantId=1&query=${query}&page=${page - 1}&limit=${limit}`;
+    const options = {
+        url: `/api/v1/products/filter?${search}`,
+        method: "GET",
+    };
+
+    return callApi(options)
+};
