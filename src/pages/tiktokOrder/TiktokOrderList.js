@@ -15,6 +15,23 @@ const listStatusFilter = [
     {status: 4, label: "Gao thành công"},
     {status: 140, label: "Đơn hủy"}
 ]
+
+const printElem = (elem) => 
+{
+    var mywindow = window.open('', 'PRINT', '');
+
+    mywindow.document.write(elem);
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}
+
+
 function TikTokOrderList (props) {
     const connections = useSelector(state => state?.setting?.connections) || [];
     const tiktokOrders = useSelector(state => state?.tiktokOrders?.orderList) || [];
@@ -51,7 +68,9 @@ function TikTokOrderList (props) {
     }
 
     const onSubmitPrint = (connectionIds, fromDate, toDate) => {
-        dispatch(getDataPrint(connectionIds, fromDate, toDate));
+        getDataPrint(connectionIds, fromDate, toDate).then(res => {
+            printElem(res);
+        });
     }
 
     const renderFilterStatus = () => {
