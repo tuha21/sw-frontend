@@ -122,3 +122,27 @@ export const manualMap = (
         dispatch(updatePositionApi('quickMap', false))
     });
 }
+
+
+export const syncProduct = (
+    id
+) => (dispatch, getState) => {
+    dispatch(updatePositionApi('sync', true))
+    const options = {
+        url: `/api/v1/channel-product/sync?id=${id}`,
+        method: "GET",
+    };
+
+    callApi(options).then(async (res) => {
+        if (res?.data?.error) {
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: res.data.error, type: 'error'}, false))
+        } else {
+            dispatch(updateAlerts({value: "Đồng bộ thành công", type: 'success'}, true))
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            dispatch(updateAlerts({value: "Đồng bộ thành công", type: 'success'}, false))
+        }
+        dispatch(updatePositionApi('sync', false))
+    });
+}

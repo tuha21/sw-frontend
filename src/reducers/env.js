@@ -18,7 +18,6 @@ const env = (state = initState, action) => {
             }
         }
         case 'update_alerts' : {
-            debugger
             if (!action.status) {
                 return {
                     ...state,

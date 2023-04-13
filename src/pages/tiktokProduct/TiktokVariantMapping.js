@@ -6,7 +6,6 @@ function TiktokVariantMapping(props) {
     const connections = useSelector(state => state.setting.connections);
 
     const getConnectionName = (id) => {
-        debugger
         return connections.filter(c => c.id === id)[0]?.name || 'TikTok Shop';
     }
 
