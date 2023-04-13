@@ -28,7 +28,7 @@ function TiktokVariant(props) {
     }
 
     const manualMapping = () => {
-        alert("pakspkaos")
+        setOpenList(false)
     }
 
     const quickCreateVariant = () => {
@@ -78,8 +78,8 @@ function TiktokVariant(props) {
                         <>
                         <div className="mapping-icon" onClick={() => setOpenList(true)}>
                             {manualMappingIcon()}
-                            {openList ? <ManualMapingModal setOpenList={setOpenList} tiktokVariantId={variant.id}/> : null}
                         </div>
+                        {openList ? <ManualMapingModal setOpenList={setOpenList} tiktokVariantId={variant.id}/> : null}
                         <div onClick={() => quickMapVariant()}>{autoMappingIcon(variant.mapping_id)}</div>
                         </>
                     )}
