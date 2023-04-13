@@ -12,6 +12,7 @@ function Processing (props) {
         || item === 'printOrder'
         || item === 'crawlOrders'
         || item === 'confirmOrder'
+        || item === 'sync'
     );
 
     const renderItem = (item) => {
@@ -33,6 +34,9 @@ function Processing (props) {
         }
         if (item === 'confirmOrder') {
             label = 'Xác nhận đơn hàng';
+        }
+        if (item === 'sync') {
+            label = 'Đồng bộ giá và tồn kho';
         }
         return (
             <div className="processing-item">
