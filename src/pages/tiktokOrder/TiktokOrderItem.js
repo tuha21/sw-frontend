@@ -71,7 +71,7 @@ function TikTokOrderItem(props) {
                     {tiktok_order.tracking_code}
                 </div>
                 <div className={`tiktok-order-payment`}>
-                    {tiktok_order.payment_method ? <Diot3Icon /> : <Diot1Icon />}
+                    {tiktok_order.paid_time ? <Diot3Icon /> : <Diot1Icon />}
                 </div>
                 <div className="tiktok-order-action">
                     <CircleCheckOutlineIcon onClick={() => setShowModal(true)}/>
