@@ -96,8 +96,8 @@ function TikTokOrderList (props) {
     return (
         <React.Fragment>
             <div className="tiktok-order-filter">
-                {showModal ? <CrawlModal closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
-                {showModalPrint ? <CrawlModal closeModal={setShowModalPrint} onSubmit={onSubmitPrint}/> : null}
+                {showModal ? <CrawlModal title={"Cập nhật dữ liệu đơn hàng"} closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
+                {showModalPrint ? <CrawlModal title={"In báo cáo"} closeModal={setShowModalPrint} onSubmit={onSubmitPrint}/> : null}
                 <div className="tiktok-order-filter-connection">
                     <SelectConnection 
                         handleChangeSelectedConnection={handleChangeSelectedConnection}

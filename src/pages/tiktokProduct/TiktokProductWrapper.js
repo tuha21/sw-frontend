@@ -5,7 +5,7 @@ import "../../style/tiktokProduct/tiktokProduct.scss"
 import TiktokProductItem from "./TiktokProductItem";
 import SelectConnection from "../../components/SelectConnection";
 import CrawlModal from "../../components/modal/CrawlModal";
-import {crawlTiktokProduct, getChannelProducts} from "../../apis/tiktokProductApi";
+import {crawlTiktokProduct, getChannelProducts, multiMap} from "../../apis/tiktokProductApi";
 
 function TiktokProductWrapper() {
 
@@ -16,6 +16,7 @@ function TiktokProductWrapper() {
     const [query, setQuery] = useState('');
     const [page, setPage] = useState({id: 1, limit: 20});
     const [showModal, setShowModal] = useState(false);
+    const [showModalMapping, setShowModalMapping] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -67,10 +68,15 @@ function TiktokProductWrapper() {
         dispatch(crawlTiktokProduct(connectionIds, fromDate, toDate));
     }
 
+    const onSubmitMapping = (connectionIds, fromDate, toDate) => {
+        dispatch(multiMap(connectionIds));
+    }
+
     const isFetchProduct = positionApi.includes('getChannelProducts')
     return (
         <div className="products-wrapper">
-            {showModal ? <CrawlModal closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
+            {showModal ? <CrawlModal title={"Cập nhật dữ liệu sản phẩm"} closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
+            {showModalMapping ? <CrawlModal hideTime title={"Liên kết nhanh"} closeModal={setShowModalMapping} onSubmit={onSubmitMapping}/> : null}
             <div className="products-filter">
                 <div className="connections-filter">
                     <SelectConnection
@@ -78,7 +84,9 @@ function TiktokProductWrapper() {
                     />
                 </div>
                 <div className="products-action">
-                    {/*<button className="btn-quick-mapping">Liên kết nhanh</button>*/}
+                    <button className="btn-quick-mapping"
+                        onClick={() => setShowModalMapping(true)}
+                    >Liên kết nhanh</button>
                     <button className="btn-crawl-product"
                         onClick={() => setShowModal(true)}
                     >Cập nhật dữ liệu sản phẩm</button>

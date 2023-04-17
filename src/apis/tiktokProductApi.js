@@ -146,3 +146,17 @@ export const syncProduct = (
         dispatch(updatePositionApi('sync', false))
     });
 }
+
+export const multiMap = (
+    connectionIds
+) => (dispatch, getState) => {
+    dispatch(updatePositionApi('multiMap', true))
+    const options = {
+        url: `/api/v1/channel-product/multi-map?connectionIds=${connectionIds}`,
+        method: "GET",
+    };
+
+    callApi(options).then((res) => {
+        dispatch(updatePositionApi('multiMap', false))
+    });
+}
