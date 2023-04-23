@@ -48,7 +48,10 @@ function ManualMapingModal(props) {
                     <div className="image"><img alt="" src={value.image} /></div>
                     <div className="product-infosss">
                         <div className="product-name">{product.name}</div>
-                        <div className="product-sku">{value.sku + ": " + value.name}</div>
+                        <div className="product-sku">
+                            <div>{value.sku + ": " + value.name}</div>
+                            <div>{value.retail_price} đ</div>
+                        </div>
                     </div>
                 </div>
             )

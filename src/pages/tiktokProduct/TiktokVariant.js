@@ -27,10 +27,6 @@ function TiktokVariant(props) {
         }
     }
 
-    const manualMapping = () => {
-        setOpenList(false)
-    }
-
     const quickCreateVariant = () => {
         const { id } = variant;
         dispatch(quickCreate(id));
@@ -38,7 +34,8 @@ function TiktokVariant(props) {
 
     const sync = () => {
         const { channel_product_id } = variant;
-        dispatch(syncProduct(channel_product_id));
+        setDrillStatus(false);
+        dispatch(syncProduct(channel_product_id))
     }
 
     const mappingVariant = variant.variant;

@@ -36,7 +36,10 @@
                 .product-infosss {
                     text-align: start;
                     padding: 10px;
+                    width: 100%;
                     .product-sku {
+                        display: flex;
+                        justify-content: space-between;
                         font-weight: 500;
                     }
                 }

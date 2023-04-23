@@ -19,6 +19,13 @@ export const getChannelProducts = (selectedConnections, query, mappingStatus, pa
     });
 };
 
+export const getMappingInfo = (id) => {const options = {
+        url: `/api/v1/channel-product/mapping-info?id=${id}`,
+        method: "GET",
+    };
+    return callApi(options)
+};
+
 export const crawlTiktokProduct = (
     connectionIds,
     fromDate, toDate
@@ -29,8 +36,9 @@ export const crawlTiktokProduct = (
         method: "GET",
     };
 
-    callApi(options).then((res) => {
+    return callApi(options).then((res) => {
         dispatch(updatePositionApi('crawlProduct', false))
+        return res;
     });
 }
 
@@ -43,7 +51,7 @@ export const quickMap = (
         method: "GET",
     };
 
-    callApi(options).then(async (res) => {
+    return callApi(options).then(async (res) => {
         if (res?.data?.error) {
             dispatch(updateAlerts({value: res.data.error, type: 'error'}, true))
             await new Promise(resolve => setTimeout(resolve, 2000))
@@ -54,6 +62,7 @@ export const quickMap = (
             dispatch(updateAlerts({value: "Liên kết sản phẩm thành công", type: 'success'}, false))
         }
         dispatch(updatePositionApi('quickMap', false))
+        return res;
     });
 }
 
@@ -158,5 +167,19 @@ export const multiMap = (
 
     callApi(options).then((res) => {
         dispatch(updatePositionApi('multiMap', false))
+    });
+}
+
+export const multiSync = (
+    connectionIds
+) => (dispatch, getState) => {
+    dispatch(updatePositionApi('multiSync', true))
+    const options = {
+        url: `/api/v1/channel-product/multi-sync?connectionIds=${connectionIds}`,
+        method: "GET",
+    };
+
+    callApi(options).then((res) => {
+        dispatch(updatePositionApi('multiSync', false))
     });
 }

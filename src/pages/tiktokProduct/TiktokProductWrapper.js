@@ -5,7 +5,7 @@ import "../../style/tiktokProduct/tiktokProduct.scss"
 import TiktokProductItem from "./TiktokProductItem";
 import SelectConnection from "../../components/SelectConnection";
 import CrawlModal from "../../components/modal/CrawlModal";
-import {crawlTiktokProduct, getChannelProducts, multiMap} from "../../apis/tiktokProductApi";
+import {crawlTiktokProduct, getChannelProducts, multiMap, multiSync} from "../../apis/tiktokProductApi";
 
 function TiktokProductWrapper() {
 
@@ -17,6 +17,7 @@ function TiktokProductWrapper() {
     const [page, setPage] = useState({id: 1, limit: 20});
     const [showModal, setShowModal] = useState(false);
     const [showModalMapping, setShowModalMapping] = useState(false);
+    const [showModalSync, setShowModalSync] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -65,11 +66,19 @@ function TiktokProductWrapper() {
     }
 
     const onSubmitCrawl = (connectionIds, fromDate, toDate) => {
-        dispatch(crawlTiktokProduct(connectionIds, fromDate, toDate));
+        dispatch(crawlTiktokProduct(connectionIds, fromDate, toDate)).then(res => {
+            dispatch(getChannelProducts(selectedConnections, query, mappingStatus, page.id, page.limit));
+        });
     }
 
     const onSubmitMapping = (connectionIds, fromDate, toDate) => {
-        dispatch(multiMap(connectionIds));
+        dispatch(multiMap(connectionIds)).then(res => {
+            dispatch(getChannelProducts(selectedConnections, query, mappingStatus, page.id, page.limit));
+        });
+    }
+
+    const onSubmitSync = (connectionIds, fromDate, toDate) => {
+        dispatch(multiSync(connectionIds)); 
     }
 
     const isFetchProduct = positionApi.includes('getChannelProducts')
@@ -77,6 +86,7 @@ function TiktokProductWrapper() {
         <div className="products-wrapper">
             {showModal ? <CrawlModal title={"Cập nhật dữ liệu sản phẩm"} closeModal={setShowModal} onSubmit={onSubmitCrawl}/> : null}
             {showModalMapping ? <CrawlModal hideTime title={"Liên kết nhanh"} closeModal={setShowModalMapping} onSubmit={onSubmitMapping}/> : null}
+            {showModalSync ? <CrawlModal hideTime title={"Đồng bộ nhanh"} closeModal={setShowModalSync} onSubmit={onSubmitSync}/> : null}
             <div className="products-filter">
                 <div className="connections-filter">
                     <SelectConnection
@@ -87,6 +97,9 @@ function TiktokProductWrapper() {
                     <button className="btn-quick-mapping"
                         onClick={() => setShowModalMapping(true)}
                     >Liên kết nhanh</button>
+                    <button className="btn-quick-sync"
+                        onClick={() => setShowModalSync(true)}
+                    >Đồng bộ nhanh</button>
                     <button className="btn-crawl-product"
                         onClick={() => setShowModal(true)}
                     >Cập nhật dữ liệu sản phẩm</button>

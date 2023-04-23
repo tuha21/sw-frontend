@@ -14,6 +14,7 @@ function Processing (props) {
         || item === 'confirmOrder'
         || item === 'sync'
         || item === 'multiMap'
+        || item === 'multiSync'
     );
 
     const renderItem = (item) => {
@@ -41,6 +42,9 @@ function Processing (props) {
         }
         if (item === 'multiMap') {
             label = 'Liên kết nhanh';
+        }
+        if (item === 'multiSync') {
+            label = 'Đồng bộ nhanh';
         }
         return (
             <div className="processing-item">
