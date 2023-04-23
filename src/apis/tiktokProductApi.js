@@ -165,8 +165,9 @@ export const multiMap = (
         method: "GET",
     };
 
-    callApi(options).then((res) => {
+    return callApi(options).then((res) => {
         dispatch(updatePositionApi('multiMap', false))
+        return res;
     });
 }
 
