@@ -39,6 +39,7 @@ function ManualMapingModal(props) {
 
     const onManualMapping = (variantId) => {
         dispatch(manualMap(tiktokVariantId, variantId));
+        setOpenList(false);
     }
 
     const renderVariant = (product) => {
